@@ -10,6 +10,9 @@
   	private function __clone(){}
   	public function connect($host,$user,$passwd){
   	  $this->link=mysql_connect($host,$user,$passwd);
+  	  if(!$this->link){
+  	  	die("could not connect: ".mysql_error());
+  	  }
   	  mysql_select_db("surveyoi",$this->link);
   	}
   	public function getInstance($host,$user,$passwd){
@@ -22,14 +25,17 @@
   	  return $this->mysql_num_rows();
   	}
   	public function query(){
-  	  mysql_query($this->sqlsen,$this->link);
+  	  echo $this->sqlsen;
+  	  $res=mysql_query($this->sqlsen,$this->link);
+  	  if(!$res){
+  	  	die("error ".mysql_error());
+  	  }
   	}
   	/*insert()ÊµÀý
   	 *   insert("user",array("name"=>"lgt","passwd"=>"5363513l"));
-  	 *   =========
+  	 *   =========>
   	 *   the sql sentence become "insert into user(name,passwd) values("lgt","5363513l")";
   	 *   
-  	 * 
   	  */
   	public function insert($table,$params){
   	  $this->sqlsen.="insert into $table";
@@ -49,7 +55,10 @@
   	  }
       $tmpstr=implode($values,',');
       $valuesSql.='('.$tmpstr.');';
-      $this->sqlsen.=$valuesSql;
+      $this->sqlsen.=" values".$valuesSql;
+  	}
+  	public function hello(){
+  	  echo "hello";
   	}
   }
   ?>
