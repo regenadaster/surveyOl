@@ -22,14 +22,37 @@
   	public function getPasswd(){
   	  return $this->passwd;
   	}
-  	public function checkUser(){
-  	}
-  	public function createUser(){
+  	public function isValidate(){
   	  if(empty($this->name)||empty($this->passwd)){
   	  	return false;
   	  }
   	  else{
-
+  	  	return true;
+  	  }
+  	}
+  	public function checkUser(){
+  	  if(!$this->isValidate()){
+  	  	return false;
+  	  }
+  	  else{
+  	  	$str="user.name=\"$this->name\" AND user.passwd=\"$this->passwd\"";
+  	  	$this->uDb->select("user",$str);
+  	  	$this->uDb->query();
+  	    $res=$this->uDb->getResultArray();
+  	    if(empty($res)){
+  	      return false;
+  	    }
+  	    else{
+  	      return true;
+  	    }
+  	  }
+  	}
+  	public function createUser(){
+  	  if(!$this->isValidate()){
+  	  	return false;
+  	  }
+  	  else{
+        
   	  }
   	}
   }
