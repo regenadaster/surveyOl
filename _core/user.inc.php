@@ -25,6 +25,12 @@
   	public function checkUser(){
   	}
   	public function createUser(){
+  	  if(empty($this->name)||empty($this->passwd)){
+  	  	return false;
+  	  }
+  	  else{
+
+  	  }
   	}
   }
   ?>

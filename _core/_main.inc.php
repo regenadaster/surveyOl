@@ -9,4 +9,26 @@
   	}
   	return false;
   }
+  function is_two_dim_array($arr){
+  	$d=1;
+  	foreach($arr as $val){
+  	  if(is_array($val)){
+  	  	$d=2;
+  	  	break;
+  	  }
+  	}
+  	return $d;
+  }
+  function strindex($str,$index){
+  	$len=strlen($str);
+  	if($index>=$len){
+  	  return false;
+  	}
+  	else{
+  	  return substr($str,$index,1);
+  	}
+  }
+  function getLastChar($str){
+  	return strindex($str,strlen($str)-1);
+  }
   ?>
