@@ -36,7 +36,8 @@
   	  }
   	  else{
   	  	$str="user.name=\"$this->name\" AND user.passwd=\"$this->passwd\"";
-  	  	$this->uDb->select("user",$str);
+  	  	$this->uDb->select("user");
+  	  	$this->uDb->where($str);
   	  	$this->uDb->query();
   	    $res=$this->uDb->getResultArray();
   	    if(empty($res)){
@@ -52,7 +53,12 @@
   	  	return false;
   	  }
   	  else{
-        
+  	    $params=array();
+  	    $params["name"]=$this->getName();
+  	    $params["passwd"]=$this->getPasswd();
+  	    var_dump($params);
+  	  	$this->uDb->insert("user",$params);
+        return $this->uDb->query();
   	  }
   	}
   }

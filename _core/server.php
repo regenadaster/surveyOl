@@ -1,6 +1,11 @@
 <?php
    require_once './_main.inc.php';
-   $myuser=new user("bty","bandaotiehe");
-   $myuser->checkUser();
+   if($_GET["query"]==="user"){
+     $myuser=new user("czp","liddk");
+     $myuser->createUser();
+   }
+   if($_GET["query"]==="survey"){
+     
+   }
   ?>
   

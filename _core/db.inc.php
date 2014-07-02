@@ -49,13 +49,14 @@
   	  if(";"!=getLastChar($this->sqlsen)){
   	  	$this->sqlsen.=";";
   	  }
-  	  echo $this->sqlsen;
+  	  //echo $this->sqlsen;
   	  $this->result=mysql_query($this->sqlsen,$this->link);
-  	  var_dump($this->result);
+  	  //var_dump($this->result);
   	  if(!$this->result){
   	  	die("error ".mysql_error());
   	  }
   	  $this->freshsql();
+  	  return $this->result;
   	}
   	/***
   	 * you can use more than once where();
@@ -74,7 +75,10 @@
   	 * ========>
   	 * "select userid,problem
   	 *   from user,problem"
-  	 * 
+  	 * ===============================================
+  	 * select("user","id")
+  	 * ========>
+  	 * "select id from user;"
   	 * 
   	 */
   	public function select($tables,$params="*"){
@@ -95,6 +99,21 @@
   	  	$tmpstr.=$tables;
   	  }
   	  $this->sqlsen.=$tmpstr;
+  	}
+  	public function groupBy($begin){
+  	  if(!empty($begin)){
+        $this->sqlsen.=" group by $begin";
+  	  }
+  	}
+  	public function addLimit($begin,$end=""){
+  	  $tmpstr="";
+  	  $tmpstr.=" limit";
+  	  if($end===""){
+  	    $this->sqlsen.="$tmpstr $begin";
+  	  }
+  	  else{
+  	  	$this->sqlsen.="$tmpstr $begin,$end";
+  	  }
   	}
   	/*insert()ÊµÀý
   	 *   insert("user",array("name"=>"lgt","passwd"=>"5363513l"));

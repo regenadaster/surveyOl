@@ -5,5 +5,7 @@
   defined("DBhost") || define("DBhost","localhost");
   defined("DBuser") || define("DBuser","root");
   defined("DBpasswd") || define("DBpasswd","");
- 
+  defined("MYSQLHOST")|| define("MYSQLHOST","localhost");
+  defined("MYSQLUSER")|| define("MYSQLUSER","root");
+  defined("MYSQLPS") || define("MYSQLPS","");
   ?>
