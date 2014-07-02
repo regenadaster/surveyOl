@@ -48,6 +48,19 @@
   	    }
   	  }
   	}
+  	public function regUser(){
+  	  $str="user.name=\"$this->name\"";
+  	  $this->uDb->select("user");
+  	  $this->uDb->where($str);
+  	  $this->uDb->query();
+  	  $res=$this->uDb->getResultArray();
+  	  if(empty($res)){
+  		return true;
+  	  }
+  	  else{
+  		return false;
+  	  }
+  	}
   	public function createUser(){
   	  if(!$this->isValidate()){
   	  	return false;
