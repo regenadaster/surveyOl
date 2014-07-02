@@ -28,9 +28,18 @@
   	public function setRelease($isre){
   	  $this->isRelease=$isre;
   	}
+  	/*you can addProblem(new problem());
+  	*  also you can use problem's params;
+  	*
+  	*/
   	public function addProblem($problem){
   	  if($problem instanceof problem){
   	  	$this->problems[]=$problem;
+  	  }
+  	  else{
+  	    if(count($problem)==3){
+  	      $this->problems[]=new problem($problem[0],$problem[1],$problem[2]);
+  	    }
   	  }
   	}
   	public function selectIdByTitleSubject(){
@@ -105,10 +114,10 @@
 	  	$this->isCreate=true;
 	  	$i=0;
 	  	foreach($this->problems as $problem){
-	  	 $i++;
-	  	 $problem->setSid($this->getSid());
-	  	 $problem->setOrder($i);
-	  	 $problem->createProblem();
+	  	  $i++;
+	  	  $problem->setSid($this->getSid());
+	  	  $problem->setOrder($i);
+	  	  $problem->createProblem();
 	  	}
   	  }
   	}

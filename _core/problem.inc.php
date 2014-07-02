@@ -8,6 +8,7 @@
   	private $descri;
   	private $isEassy;
   	private $pDb;
+  	private $isCreate;
   	public function __construct($type=0,$descri="",$isEassy=0){
   	  $this->setType($type);
   	  $this->setDescript($descri);
@@ -41,7 +42,14 @@
   	public function setIsEassy($isEassy){
   	  $this->isEassy=$isEassy;
   	}
+  	public function checkIsValidate(){
+  	  $flag=!empty($this->surveyid)||!empty($this->ptype)||!empty($this->order);
+  	  $anotherflag=!empty($this->descri)||!empty($this->isEassy);
+  	  return $flag||$anotherflag;
+  	}
   	public function createProblem(){
+  	  if(!$this->checkIsValidate()) return;
+  	  if($this->isCreate) return;
   	  $arr=array();
   	  $arr["surveyid"]=$this->surveyid;
   	  $arr["ptype"]=$this->ptype;
@@ -50,6 +58,7 @@
   	  $arr["isEassy"]=$this->isEassy;
   	  $this->pDb->insert("problem",$arr);
   	  $this->pDb->query();
+  	  $this->isCreate=true;
   	}
   }
   ?>
