@@ -8,18 +8,24 @@
   	private $descri;
   	private $isEassy;
   	private $pDb;
-  	public function __construct($id=0,$sid=0,$type=0,$order=0,$descri="",$isEassy=false){
-  	  $this->setId($id);
-  	  $this->setSid($sid);
+  	public function __construct($type=0,$descri="",$isEassy=0){
   	  $this->setType($type);
-  	  $this->setOrder($order);
   	  $this->setDescript($descri);
   	  $this->setIsEassy($isEassy);
-  	  $this->pDb=db::getInstance(MYSQLHOST,MYSQLUSER,MYSQLPS);
+  	  @$this->pDb=db::getInstance(MYSQLHOST,MYSQLUSER,MYSQLPS);
   	}
-  	public function setID($id){
-  	  $this->id=$id;
+  	public function setId(){
+  	  $this->pDb->select("problem","id");
+  	  $this->pDb->where("descri=\"$this->descri\" AND surveyid=\"this->surveyid\" ");		
+  	  $this->pDb->query();
+  	  $tmp=$this->pDb->getResultArray();
+  	  $this->id=$tmp["id"];
   	}
+    public function getId(){
+      if($this->id==0){
+      	$this->setId();
+      }
+    }
   	public function setSid($sid){
   	  $this->surveyid=$sid;
   	}
@@ -37,12 +43,13 @@
   	}
   	public function createProblem(){
   	  $arr=array();
-  	  $arr["id"]=$this->id;
   	  $arr["surveyid"]=$this->surveyid;
   	  $arr["ptype"]=$this->ptype;
-  	  $arr["order"]=$this->order;
-  	  $arr["descri"]=$this->descri;
+  	  $arr["num"]=$this->order;
+  	  $arr["description"]=$this->descri;
+  	  $arr["isEassy"]=$this->isEassy;
   	  $this->pDb->insert("problem",$arr);
+  	  $this->pDb->query();
   	}
   }
   ?>

@@ -9,13 +9,11 @@
   	static private $instance;
   	private function __construct($host,$user,$passwd){
   	  $this->connect($host, $user, $passwd);
+  	  var_dump($this->link);
   	  $this->isOpen=true;
   	}
   	private function __clone(){}
-  	private function __destruct(){
-  	  if($this->isOpen){
-  	  	$this->close();
-  	  }
+  	public function __destruct(){
   	}
   	public function connect($host,$user,$passwd){
   	  $this->link=mysql_connect($host,$user,$passwd);
@@ -49,9 +47,11 @@
   	  if(";"!=getLastChar($this->sqlsen)){
   	  	$this->sqlsen.=";";
   	  }
-  	  //echo $this->sqlsen;
+  	  echo "   ";
+  	  var_dump($this->sqlsen);
+  	  var_dump($this->link);
   	  $this->result=mysql_query($this->sqlsen,$this->link);
-  	  //var_dump($this->result);
+  	 // var_dump($this->result);
   	  if(!$this->result){
   	  	die("error ".mysql_error());
   	  }
