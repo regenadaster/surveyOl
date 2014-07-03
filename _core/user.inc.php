@@ -48,6 +48,22 @@
   	    }
   	  }
   	}
+  	public function loopPage(){
+  	  $tof=$this->checkUser();
+  	  if($tof){
+        header("Location: http://localhost/surveyOL/index.php");
+  			/*$str=<<<mark
+  		    <script language="javascript"type="text/javascript">
+  			alert("shshhd");
+  			</script>
+  			mark;
+  			echo $str;
+  			*/
+  	  }
+  	  else{
+  	    header("Location: http://localhost/surveyOL/doc/login.html?query=login");
+  	  }
+  	}
   	public function regUser(){
   	  $str="user.name=\"$this->name\"";
   	  $this->uDb->select("user");

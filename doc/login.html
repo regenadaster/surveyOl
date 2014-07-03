@@ -3,29 +3,31 @@
 <html lang="en">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/> 
-<link href="../Bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" media="screen" />
-<script src="../Jquery/jquery.js"></script>
+<link href="../bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" media="screen" />
+<script src="../jquery/jquery.js"></script>
     <title>login</title>
 </head>
 <body  style="padding-top:40px;background-color:#eee">
     <div class="container" style="max-width:600px;">
-    <form class="form-horizontal" action="http://127.0.0.1:8081/surveyOi/_core/server.php?query=login" method="post">
-        <div class="control-group">
-            <label class="control-label" for="user">用户名：</label>
-            <div class="controls">
-                <input type="text" placeholder="不能为空" name="user"/>
+    <form class="form-horizontal" action="http://localhost/surveyOL/_core/server.php?query=login" method="post">
+        <div class="form-group">
+            <label class="col-sm-2 control-label" for="user">用户名：</label>
+            <div class="col-sm-6">
+                <input class="form-control" type="text" placeholder="不能为空" name="user"/>
             </div>
         </div>
-        <div class="control-group">
-            <label class="control-label" for="password">密码：</label>
-            <div class="controls">
-                <input type="password"  placeholder="" name="password" />
+        <div class="form-group">
+            <label class="col-sm-2 control-label" for="password">密码：</label>
+            <div class="col-sm-6">
+                <input class="form-control" type="password"  placeholder="" name="password" />
             </div>
         </div>
-        <div class="controls">
-            <label class="checkbox"><input type="checkbox" />记住我</label>
-            <div class="control-button">
-                <input class="btn btn-primary" type="submit" id="login">登陆</button>
+        <div class="form-group">
+        	<div class="col-sm-offset-2 col-sm-10">
+ 				<label class="checkbox"><input type="checkbox" />记住我</label>
+        	</div>
+            <div class="col-sm-offset-2 col-sm-10">
+                <button class="btn btn-primary" type="submit" id="login">登陆</button>
                 <button class="btn" type="reset">取消</button>
             </div>
         </div>
