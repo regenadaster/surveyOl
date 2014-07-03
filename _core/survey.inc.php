@@ -100,7 +100,6 @@
   	public function createSurvey(){
   	  if($this->checkSurvey()){
   	  	if($this->isCreate) return;
-  	  	echo "returning";
 	    $arr=array();
 	  	$arr["title"]=$this->title;
 	  	$arr["subject"]=$this->subject;

@@ -1,9 +1,9 @@
 <?php
    require_once './_main.inc.php';
    //require_once './survey.inc.php';
-   if($_GET["query"]==="user"){
-     $myuser=new user("czp","liddk");
-     $myuser->createUser();
+   if($_GET["query"]==="login"){
+     var_dump($_POST["user"]);
+     var_dump($_POST["password"]);
    }
    if($_GET["query"]==="survey"){
    	 echo "before new";
