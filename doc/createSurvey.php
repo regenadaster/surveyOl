@@ -16,9 +16,18 @@
       margin-left:50;
     }
     .block{
+      padding-top:10;
+      padding-bottom:10;
       border-style:solid;
-      border-color:red;
-      border-radius:2px;
+      border-color:#e7e7e7;
+      border-radius:5px;
+      cursor:text;
+    }
+    .block:hover{
+      background-color:#FDF9CD;
+    }
+    .option{
+    	
     }
   </style>
   <body>
@@ -38,7 +47,7 @@
       </div>
       <div class="row">
         <div class="col-md-offset-3" id="editButton">
-          <button type="button" class="btn btn-default" id="choice">选择题</button>
+          <button type="button" class="btn btn-default" id="choice">单选题</button>
           <button type="button" class="btn btn-default" id="multiplechoice">多选题</button>
           <button type="button" class="btn btn-default" id="judge">判断题</button>
           <button type="button" class="btn btn-default" id="eassyQuestion">问答题</button>
