@@ -1,4 +1,5 @@
 <?php
+   session_start();
    require_once './_main.inc.php';
    //require_once './survey.inc.php';
   if(@$_GET["query"]==="login"){
@@ -26,7 +27,35 @@
  	}
    }
    if($_GET["query"]=="survey"){
-     //$dataSet=$_POST["dataSet"];
+   
+     $dataSet=$_POST["dataSet"];
+     /*
+     setVal("userName", "lgt");
+     $optionOne=array();
+     $optionTwo=array();
+     $dataSet=array();
+     $dataSet["title"]="ok";
+     $dataSet["descript"]="hello world";
+     $optionOne["type"]=0;
+     $optionTwo["type"]=1;
+     $optionOne["descript"]="xuan xiang yi";
+     $optionTwo["descript"]="xuang xiang er";
+     $question=array();
+     $questions=array();
+     $question["descript"]="wenti one";
+     $question["options"]=array();
+     $question["options"][]=$optionTwo;
+     $question["options"][]=$optionOne;
+     $questions[]=$question;
+     $dataSet["questions"]=$questions;
+     $_interpreter=new interpreter($dataSet);
+     */
+   	/*
+   	$mysurvey=new survey("helloaasdsdfaaaaaaa gadasdfwoasdrld","asasdfasdasaaaafhello","asdfworld","asdflgt","1993-03-10 12:30:10","1993-03-10 12:30:10",0);
+   	echo "after";
+   	*/
+    setVal("userName","lgt");
+    $_interpreter=new interpreter($dataSet);
    }
   ?>
   

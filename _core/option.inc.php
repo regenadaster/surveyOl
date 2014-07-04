@@ -77,6 +77,7 @@
   	  	$this->opDb->insert($this->dbTable, $arr);
   	  	$this->opDb->query();
   	  	$this->isCreate=true;
+  	  	echo "adsfasdf";
   	  	$this->getId();
   	  }
   	}

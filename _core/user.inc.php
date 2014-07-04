@@ -51,7 +51,9 @@
   	public function loopPage(){
   	  $tof=$this->checkUser();
   	  if($tof){
-        header("Location: http://localhost/surveyOL/index.php");
+  	  	$_SESSION["userName"]=$_POST['user'];
+  	  	setVal("password",$_POST["password"]);
+        header("Location: http://127.0.0.1:8081/surveyOi/doc/home.php");
   			/*$str=<<<mark
   		    <script language="javascript"type="text/javascript">
   			alert("shshhd");
@@ -61,7 +63,7 @@
   			*/
   	  }
   	  else{
-  	    header("Location: http://localhost/surveyOL/doc/login.html?query=login");
+  	    header("Location: http://127.0.0.1:8081/surveyOI/doc/login.html");
   	  }
   	}
   	public function regUser(){

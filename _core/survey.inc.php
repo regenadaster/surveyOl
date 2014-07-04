@@ -23,7 +23,7 @@
   	  $this->setRelease($isRelease);
   	  @$this->sDb=db::getInstance(MYSQLHOST,MYSQLUSER,MYSQLPS);
   	  $this->isCreate=false;
-  	  $problems=array();
+  	  $this->problems=array();
   	  $this->id=0;
   	}
   	public function setRelease($isre){
@@ -114,10 +114,13 @@
 	  	$this->sDb->query();
 	  	$this->isCreate=true;
 	  	$i=0;
+	  	echo "before heerer";
 	  	foreach($this->problems as $problem){
 	  	  $i++;
+	  	  echo "just befor sid";
 	  	  $problem->setSid($this->getSid());
 	  	  $problem->setOrder($i);
+	  	  echo "heerer";
 	  	  $problem->createProblem();
 	  	}
   	  }

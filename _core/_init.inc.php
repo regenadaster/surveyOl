@@ -5,4 +5,5 @@
   defined(MYSQLHOST)|| define(MYSQLHOST,"127.0.0.1");
   defined(MYSQLUSER)|| define(MYSQLUSER,"root");
   defined(MYSQLPS) || define(MYSQLPS,"");
+  date_default_timezone_set('PRC');
   ?>

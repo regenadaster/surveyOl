@@ -21,6 +21,7 @@
   	  	die("could not connect: ".mysql_error());
   	  }
   	  mysql_select_db("surveyoi",$this->link);
+  	  mysql_query("set names utf-8");
   	}
   	public function getInstance($host,$user,$passwd){
   	  if(!self::$instance instanceof db){
@@ -47,12 +48,13 @@
   	  if(";"!=getLastChar($this->sqlsen)){
   	  	$this->sqlsen.=";";
   	  }
-  	  //echo "   </br>";
-  	 // var_dump($this->sqlsen);
-  	  //echo "</br>";
+  	  echo "   </br>";
+  	  var_dump($this->sqlsen);
+  	  echo "</br>";
   	  //var_dump($this->link);
   	  $this->result=mysql_query($this->sqlsen,$this->link);
-  	 // var_dump($this->result);
+  	  //var_dump($this->result);
+  	  echo "</br>";
   	  if(!$this->result){
   	  	die("error ".mysql_error());
   	  }
