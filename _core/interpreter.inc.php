@@ -4,6 +4,8 @@
     private $_dataSet;
     private $_survey;
     private $_problems;
+    private $surveyId;
+    private $surveyTailUrl;
     public function __construct($_data){
       echo "come in";
       $this->_dataSet=$_data;
@@ -38,6 +40,8 @@
       	$this->_survey->addProblem($this->_problems[$i]);
       }
       $this->_survey->createSurvey();
+      $this->surveyId=$this->_survey->getSid();
+      //$this->MkFile();
     }
     public function putProblem(){
       $this->_problems=array();

@@ -1,3 +1,4 @@
+<?php session_start();?>
 <html>
   <meta http-equiv="Content-Type" content="text/html; charset=gb2312">
   <title>createSurvey</title>

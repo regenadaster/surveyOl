@@ -59,6 +59,7 @@
   	  	die("error ".mysql_error());
   	  }
   	  $this->freshsql();
+  	  $this->isWhere=false;
   	  return $this->result;
   	}
   	/***

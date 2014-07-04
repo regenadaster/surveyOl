@@ -13,6 +13,8 @@
   	private $isRelease;
   	private $isCreate;
   	private $problems;//$problems is a array of problem class
+  	private $url;
+  	private $urlTable;
   	public function __construct($title="",$subject="",$descript="",$owner="",$begin="",$close="",$isRelease=0){
   	  $this->setTitle($title);
   	  $this->setSubject($subject);
@@ -24,6 +26,7 @@
   	  @$this->sDb=db::getInstance(MYSQLHOST,MYSQLUSER,MYSQLPS);
   	  $this->isCreate=false;
   	  $this->problems=array();
+  	  $this->urlTable="surveyUrl";
   	  $this->id=0;
   	}
   	public function setRelease($isre){
@@ -44,6 +47,21 @@
   	      }
   	  	}
   	  }
+  	}
+  	public function setUrl(){
+      $arr=array();
+  	  $arr["surveyid"]=$this->id;
+  	  $arr["url"]=$this->url;
+  	  $this->sDb->insert($this->urlTable,$arr);
+  	  $this->sDb->query();
+  	}
+  	public function getMD5url(){
+  	  return myUlrmd5(''.$this->id);
+  	}
+  	public function MkFile(){
+  	  $this->url=$this->getMD5url();
+  	  $myfile = fopen("../s/".$this->url.".php", "w");
+  	  fwrite($myfile, '<?php $fatherFile=__FILE__; require_once "../_core/superSurvey.php";?>');
   	}
   	public function selectIdByTitleSubject(){
   	  $this->sDb->select("survey","id");
@@ -114,6 +132,8 @@
 	  	$this->sDb->query();
 	  	$this->isCreate=true;
 	  	$i=0;
+	  	$this->setSid();
+	  	$this->MkFile();
 	  	echo "before heerer";
 	  	foreach($this->problems as $problem){
 	  	  $i++;

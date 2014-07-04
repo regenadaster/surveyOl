@@ -38,4 +38,9 @@
   function setVal($name,$val){
     $_SESSION[$name]=$val;
   }
+  function myUlrmd5($str){
+  	$str.="survey";
+  	$newStr=md5($str);
+    return $newStr;
+  }
   ?>
