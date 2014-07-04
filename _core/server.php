@@ -25,13 +25,9 @@
  	  echo"buhao";
  	}
    }
-   if($_GET["query"]==="survey"){
-   	 echo "before new";
-     $mysurvey=new survey("helloasdfaaaaaaa gadasdfworld","asdfasdasaaaafhello","asdfworld","asdflgt","1993-03-10 12:30:10","1993-03-10 12:30:10",0);
-     echo "after new";
-     $mysurvey->addProblem(new problem(1,"are you a girl"));
-     $mysurvey->createSurvey();
-     
+   if($_GET["query"]=="survey"){
+     $dataSet=$_POST["dataSet"];
+
    }
   ?>
   

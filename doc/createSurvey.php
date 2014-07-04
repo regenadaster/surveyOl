@@ -5,6 +5,7 @@
   <script type="text/javascript" src="../Jquery/jquery.js"></script>
   <script type="text/javascript" src="../lib/common.js"></script>
   <script type="text/javascript" src="../lib/createSurvey.js"></script>
+  <script type="text/javascript" src="../lib/surveyDataProcess.js"></script>
   <style type="text/css">
     #editButton{
       display:none;
@@ -29,6 +30,12 @@
     .option{
     	
     }
+    .addTAG{
+      display:none;      
+    }
+    .addTAG:hover{
+      cursor:hand;
+    }
   </style>
   <body>
     <div class="container">
@@ -51,6 +58,8 @@
           <button type="button" class="btn btn-default" id="multiplechoice">多选题</button>
           <button type="button" class="btn btn-default" id="judge">判断题</button>
           <button type="button" class="btn btn-default" id="eassyQuestion">问答题</button>
+          <button type="button" class="btn btn-default" id="preview">预览</button>
+          <button type="button" class="btn btn-default" id="publish">发布</button>
         </div>
       </div>
       </br>
