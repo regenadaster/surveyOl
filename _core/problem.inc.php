@@ -9,15 +9,18 @@
   	private $isEassy;
   	private $pDb;
   	private $isCreate;
+  	private $options;
   	public function __construct($type=0,$descri="",$isEassy=0){
   	  $this->setType($type);
   	  $this->setDescript($descri);
   	  $this->setIsEassy($isEassy);
   	  @$this->pDb=db::getInstance(MYSQLHOST,MYSQLUSER,MYSQLPS);
+  	  $this->options=array();
+  	  $this->id=0;
   	}
   	public function setId(){
   	  $this->pDb->select("problem","id");
-  	  $this->pDb->where("descri=\"$this->descri\" AND surveyid=\"this->surveyid\" ");		
+  	  $this->pDb->where("description=\"$this->descri\" AND surveyid=$this->surveyid");		
   	  $this->pDb->query();
   	  $tmp=$this->pDb->getResultArray();
   	  $this->id=$tmp["id"];
@@ -25,6 +28,23 @@
     public function getId(){
       if($this->id==0){
       	$this->setId();
+      }
+      return $this->id;
+    }
+    public function addOption($_opt){
+      if($_opt instanceof option){
+        $this->options[]=$_opt;
+      }
+      else{
+        if(is_numeric($_opt)){
+          $this->options[]=new option($_opt,"");
+        }
+        if(is_string($_opt)){
+          $this->options[]=new option(0,$_opt);
+        }
+        if(is_array($_opt)){
+          $this->options[]=new option($_opt[0],$_opt[1]);
+        }
       }
     }
   	public function setSid($sid){
@@ -59,6 +79,13 @@
   	  $this->pDb->insert("problem",$arr);
   	  $this->pDb->query();
   	  $this->isCreate=true;
+  	  $i=0;
+  	  foreach($this->options as $_opt){
+  	  	$i++;
+  	  	$_opt->setProblemid($this->getId());
+  	  	$_opt->setPnum($i);
+  	  	$_opt->createOption();
+  	  }
   	}
   }
   ?>

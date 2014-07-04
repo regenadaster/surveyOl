@@ -32,4 +32,10 @@
   function getLastChar($str){
   	return strindex($str,strlen($str)-1);
   }
+  function getVal($name){
+    return $_SESSION[$name];
+  }
+  function setVal($name,$val){
+    $_SESSION[$name]=$val;
+  }
   ?>

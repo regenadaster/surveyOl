@@ -26,8 +26,7 @@
  	}
    }
    if($_GET["query"]=="survey"){
-     $dataSet=$_POST["dataSet"];
-
+     //$dataSet=$_POST["dataSet"];
    }
   ?>
   

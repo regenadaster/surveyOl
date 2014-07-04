@@ -24,6 +24,7 @@
   	  @$this->sDb=db::getInstance(MYSQLHOST,MYSQLUSER,MYSQLPS);
   	  $this->isCreate=false;
   	  $problems=array();
+  	  $this->id=0;
   	}
   	public function setRelease($isre){
   	  $this->isRelease=$isre;
@@ -37,9 +38,11 @@
   	  	$this->problems[]=$problem;
   	  }
   	  else{
-  	    if(count($problem)==3){
-  	      $this->problems[]=new problem($problem[0],$problem[1],$problem[2]);
-  	    }
+  	  	if(is_array($problem)){
+  	      if(count($problem)==3){
+  	        $this->problems[]=new problem($problem[0],$problem[1],$problem[2]);
+  	      }
+  	  	}
   	  }
   	}
   	public function selectIdByTitleSubject(){
@@ -64,7 +67,6 @@
   	}
   	public function getSid(){
   	  if($this->id==0){
-  	  	echo "set id      ";
   	  	$this->setSid();
   	  }
   	  return $this->id;

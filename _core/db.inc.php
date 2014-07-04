@@ -47,9 +47,10 @@
   	  if(";"!=getLastChar($this->sqlsen)){
   	  	$this->sqlsen.=";";
   	  }
-  	  echo "   ";
-  	  var_dump($this->sqlsen);
-  	  var_dump($this->link);
+  	  //echo "   </br>";
+  	 // var_dump($this->sqlsen);
+  	  //echo "</br>";
+  	  //var_dump($this->link);
   	  $this->result=mysql_query($this->sqlsen,$this->link);
   	 // var_dump($this->result);
   	  if(!$this->result){
