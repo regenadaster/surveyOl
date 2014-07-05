@@ -7,11 +7,31 @@
   	private $tagStr;
   	private $father;
   	private $children;
-  	public function __construct(){
+  	private $isOne;
+  	private $withSlash;
+  	public function __construct($one=0){
   	  $this->children=array();
+  	  $this->isOne=$one;
+  	  $this->withSlash=1;
+  	}
+  	public function setIsOne($one=1){
+  	  $this->isOne=$one;
+  	}
+  	public function setSlash($slash=0){
+  	  $this->withSlash=$slash;
   	}
   	public function setDefaultTag($_tag){
-  	  $this->tagStr="<".$_tag.">"."</".$_tag.">";
+  	  if(!$this->isOne){
+  	    $this->tagStr="<".$_tag.">"."</".$_tag.">";
+  	  }
+  	  else{
+  	    if(!$this->withSlash){
+  	      $this->tagStr="<".$_tag.">";
+  	    }
+  	    else{
+  	      $this->tagStr="<".$_tag."/>";
+  	    }
+  	  }
   	}
   	public function setTagStr($_str){
   	  $this->tagStr=$_str;
@@ -23,6 +43,30 @@
   	  if($_child instanceof tag){
   	    $this->children[]=$_child;
   	  }
+  	}
+  	/*****
+  	 * addAllcontent() return all the content in the tag;
+  	*/
+  	public function addAllContent(){
+  	  $tmpStr="";
+  	  if(count($this->children)==0){
+  	    $tmpStr.=$this->getTagStr();
+  	    return $tmpStr;
+  	  }
+  	  for($i=0;$i<count($this->children);$i++){
+  	  	$tmpStr.=$this->children[$i]->addAllContent();
+  	  }
+  	  $_pos=strrpos($this->getTagStr(),"<");
+  	  $firPart=substr($this->getTagStr(), 0,$_pos+1);
+  	  $secPart=subStr($this->getTagStr(),$_pos);
+  	  return $firPart.$tmpStr.$secPart;
+  	}
+  	public function addContent($str){
+  	  $tmpStr=$this->getTagStr();
+  	  $_first=strpos($tmpStr, '>');
+  	  $firPart=substr($tmpStr, 0,$_first+1);
+  	  $secPart=substr($tmpStr, $_first+1);
+  	  $this->setTagStr($firPart.$str.$secPart);
   	}
   	public function echoHtml(){
   	  echo $this->getTagStr();
@@ -70,12 +114,65 @@
       return $this;
   	}
   }
+  class commonTag extends tag{
+    private $isJsScript;
+    private $jsSet;
+    private $isStyle;
+    private $styleSet;
+    public function __construct(){
+  	  parent::__construct();
+  	  $this->isJsScript=0;
+  	  $this->isStyle=0;
+  	  $this->jsSet=0;
+  	  $this->styleSet=0;
+  	}
+  	public function setJs(){
+  	  $this->setDefaultTag("script");
+  	  $this->addAttr("type","text/javascript");
+  	  $this->jsSet=1;
+  	}
+  	public function setStyle(){
+  	  $this->setIsOne(1);
+  	  $this->setSlash(0);
+  	  $this->setDefaultTag("link");
+      $this->addAttr("rel","stylesheet")->addAttr("type","text/css");
+  	}
+  	public function setIsJs($_js=0){
+  	  $this->isJsScript=$_js;
+  	}
+  	public function getIsJs(){
+  	  return $this->isJsScript;
+  	}
+  	public function getIsStyle(){
+  	  return $this->isStyle;
+  	}
+  	public function setIsStyle($_style=0){
+  	  $this->isStyle=$_style;
+  	}
+  	public function setJsUrl($_url){
+  	  if($this->jsSet==0){
+  	  	$this->setJs();
+  	  }
+  	  $this->addAttr("src",$_url);
+  	}
+  	public function setStyleUrl($_url){
+  	  if($this->styleSet==0){
+  	    $this->setStyle();
+  	  }
+  	  $this->addAttr("href",$_url);
+  	}
+  }
   class divTag extends tag{
   	public function __construct(){
-	  echo "come in";
   	  parent::__construct();
       $this->setDefaultTag("div");
   	}
-  
+  }
+  class htmlTag extends tag{
+  	private $head;
+  	private $body;
+  	public function __construct(){
+  	  
+  	}
   }
 ?>
