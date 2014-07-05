@@ -27,8 +27,13 @@
      $dataSet["questions"]=$questions;
      $_interpreter=new interpreter($dataSet);
    */
-    $mysurvey=new survey();
-    $mysurvey->setIdByHand(105);
-    $mysurvey->AddProblemById();
-    var_dump($mysurvey);
+    //$mysurvey=new survey();
+    //$mysurvey->setIdByHand(105);
+    //$mysurvey->AddProblemById();
+    //var_dump($mysurvey);
+    $myhtml=new divTag();
+    $myhtml->addAttr("class","hello")->addAttr("class","myhtmltag");
+    $myhtml->addAttr("class",array("world","good"))->addAttr(array("id"=>"night"));
+    $myhtml->echoHtml();
+    var_dump($myhtml);
   ?>

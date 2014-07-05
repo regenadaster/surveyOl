@@ -1,7 +1,16 @@
 <?php
   require_once "_init.inc.php";
   function __autoload($class_name){
-  	require_once $class_name.'.inc.php';
+    $fileName=$class_name.'.inc.php';
+    if(file_exists($class_name.'.inc.php')){
+  	  require_once $class_name.'.inc.php';
+    }
+  	else{
+  	  $fileName="../_core/createHtml.inc.php";
+  	  if(file_exists($fileName)){
+       require_once "../_core/createHtml.inc.php";
+  	  }
+  	}
   }
   function is_assoc($arr){
   	if(is_array($arr)){
