@@ -41,6 +41,6 @@
   function myUlrmd5($str){
   	$str.="survey";
   	$newStr=md5($str);
-    return $newStr;
+    return substr($newStr,0,7);
   }
   ?>

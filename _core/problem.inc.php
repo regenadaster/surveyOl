@@ -18,6 +18,28 @@
   	  $this->options=array();
   	  $this->id=0;
   	}
+  	public function setIdByHand($_id){
+  	  $this->id=$_id;
+  	}
+  	public function AddOptionById(){
+  	  if($this->id==0){
+  	    return false;
+  	  }
+  	  else{
+  	    $this->pDb->select("poption");
+  	    $this->pDb->where("problemid=$this->id");
+  	    $this->pDb->query();
+  	    $res=$this->pDb->getResultArray();
+  	    foreach ($res as $_arr){
+  	      $tmpOpt=new option();
+  	      $tmpOpt->setProblemid((int)$_arr["problemid"]);
+  	      $tmpOpt->setPnum((int)$_arr["pnum"]);
+  	      $tmpOpt->setDescript($_arr["odescript"]);
+  	      $tmpOpt->setIdByHand((int)$_arr["id"]);
+  	      $this->addOption($tmpOpt);
+  	    }
+  	  }
+  	}
   	public function setId(){
   	  $this->pDb->select("problem","id");
   	  $this->pDb->where("description=\"$this->descri\" AND surveyid=$this->surveyid");		

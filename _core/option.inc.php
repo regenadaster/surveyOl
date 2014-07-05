@@ -32,6 +32,9 @@
   	    return true;
   	  }
   	}
+  	public function setIdByHand($_id){
+  	  $this->id=$_id;
+  	}
   	public function getId(){
   	  if($this->id==0){
   	    $tmp=$this->setId();

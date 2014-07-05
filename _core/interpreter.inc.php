@@ -41,7 +41,8 @@
       }
       $this->_survey->createSurvey();
       $this->surveyId=$this->_survey->getSid();
-      //$this->MkFile();
+      $this->_survey->putUrlById();
+      $this->_survey->MkFile();
     }
     public function putProblem(){
       $this->_problems=array();

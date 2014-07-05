@@ -67,6 +67,7 @@
   	  }
   	}
   	public function regUser(){
+  	  if(!$this->isValidate()) return false;
   	  $str="user.name=\"$this->name\"";
   	  $this->uDb->select("user");
   	  $this->uDb->where($str);
@@ -87,7 +88,7 @@
   	    $params=array();
   	    $params["name"]=$this->getName();
   	    $params["passwd"]=$this->getPasswd();
-  	    var_dump($params);
+  	   // var_dump($params);
   	  	$this->uDb->insert("user",$params);
         return $this->uDb->query();
   	  }

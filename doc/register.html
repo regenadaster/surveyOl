@@ -1,7 +1,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
 <link href="../bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" media="screen" />
 <script type="text/javascript">
 	function check(){
@@ -9,7 +9,7 @@
 		var p1=document.getElementById("pw1").value;
 		var p2=document.getElementById("pw2").value;
 		if(p1!=p2){
-			document.getElementById("ms").innerHTML="ä¸¤æ¬¡è¾“å…¥å¯†ç ä¸ä¸€è‡´ï¼Œè¯·é‡æ–°è¾“å…¥";
+			document.getElementById("ms").innerHTML="Á½´ÎÊäÈëÃÜÂë²»Ò»ÖÂ£¬ÇëÖØĞÂÊäÈë";
 		}
 	}
 	function checkn()
@@ -17,7 +17,7 @@
 		var p1=document.getElementById("n").value;
 		if(p1=="")
 			{
-			document.getElementById("ns").innerHTML="ä¸èƒ½ä¸ºç©ºï¼";
+			document.getElementById("ns").innerHTML="²»ÄÜÎª¿Õ£¡";
 			}
 		else
 			{
@@ -25,7 +25,7 @@
 			}
 	}
 </script>
-<script src="../jquery/jquery-2.1.1.js"></script>
+<script src="../Jquery/jquery.js"></script>
 <title>Insert title here</title>
 <style type="text/css">
   .logintable{
@@ -42,10 +42,10 @@
 			<ul class="nav navbar-nav">
 				<a class="navbar-brand" href="#">System</a>
 				<li class="active">
-					<a href="#">Home</a>
+					<a href="http://127.0.0.1:8081/surveyOI/doc/home.php">Home</a>
 				</li>
 				<li>
-				<a href="#questionnaire">
+				<a href="http://127.0.0.1:8081/surveyOI/doc/createSurvey.php">
 					Questionnaire
 				</a>
 				</li>
@@ -64,39 +64,39 @@
 				</li>
 			</ul>
 		</div>
-		<form class="form-horizontal" action="http://localhost/survey/_core/server.php" method="post">
+		<form class="form-horizontal" action="http://127.0.0.1:8081/surveyOI/_core/server.php?query=sign" method="post">
 			</br>
 			</br>
 			</br>
 		<div class="logintable col-md-offset-2">
 			<div class="form-group"">
-            	<label class="col-md-2 control-label col-md-offset-3" for="user">ç”¨æˆ·åï¼š</label>
+            	<label class="col-md-2 control-label col-md-offset-3" for="user">ÓÃ»§Ãû£º</label>
            		<div class="col-md-3">
-                	<input class="form-control" type="text" placeholder="ä¸èƒ½ä¸ºç©º" name="user" id="n" onblur="checkn()"/>
+                	<input class="form-control" type="text" placeholder="²»ÄÜÎª¿Õ" name="user" id="n" onblur="checkn()"/>
             	</div>
             	<div id="ns" style="color:red;"></div>
         	</div>
         	<div class="form-group"">
-            	<label class="col-md-2 control-label col-md-offset-3" for="password">å¯†ç :</label>
+            	<label class="col-md-2 control-label col-md-offset-3" for="password">ÃÜÂë:</label>
            		<div class="col-md-3">
                 	<input class="form-control" type="password" name="password" id="pw1"/>
             	</div>
         	</div>
         	<div class="form-group"">
-            	<label class="col-md-2 control-label col-md-offset-3" for="password2">ç¡®è®¤å¯†ç :</label>
+            	<label class="col-md-2 control-label col-md-offset-3" for="password2">È·ÈÏÃÜÂë:</label>
            		<div class="col-md-3">
                 	<input class="form-control" type="password" name="password2" id="pw2" onblur="check()"/>
             	</div>
             	<div id="ms" style="color:red;"></div>
         	</div>
         	<div class="form-group"">
-            	<label class="col-md-2 control-label col-md-offset-3" for="Email">Email:ï¼š</label>
+            	<label class="col-md-2 control-label col-md-offset-3" for="Email">Email:£º</label>
            		<div class="col-md-3">
                 	<input class="form-control" type="text" name="Email"/>
             	</div>
         	</div>
         	</br>
-        	<button class="btn btn-primary col-md-2 col-md-offset-4" type="submit" id="signup">æäº¤</button>
+        	<button class="btn btn-primary col-md-2 col-md-offset-4" type="submit" id="signup">Ìá½»</button>
         </div>
 		</form>
 	</div>

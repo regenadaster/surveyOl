@@ -7,14 +7,14 @@
   	private $descript;
   	private $owner;
   	private $begin;
-  	private $end;
   	private $sDb;
   	private $close;
   	private $isRelease;
   	private $isCreate;
-  	private $problems;//$problems is a array of problem class
   	private $url;
-  	private $urlTable;
+  	private $problems;//$problems is a array of problem class
+  	private $urlObject;
+  	private $sTable;
   	public function __construct($title="",$subject="",$descript="",$owner="",$begin="",$close="",$isRelease=0){
   	  $this->setTitle($title);
   	  $this->setSubject($subject);
@@ -26,8 +26,56 @@
   	  @$this->sDb=db::getInstance(MYSQLHOST,MYSQLUSER,MYSQLPS);
   	  $this->isCreate=false;
   	  $this->problems=array();
-  	  $this->urlTable="surveyUrl";
+  	  $this->urlObject=new surveyUrl();
   	  $this->id=0;
+  	  $this->sTable="survey";
+  	}
+  	public function setIdByHand($_id){
+  	  $this->id=$_id;
+  	}
+  	public function AddProblemById(){
+  	  if($this->id==0){
+  	    return false;
+  	  }
+  	  else{
+  	  	$this->sDb->select("problem");
+  	  	$this->sDb->where("surveyid=$this->id");
+  	  	$this->sDb->query();
+  	  	$res=$this->sDb->getResultArray();
+  	  	foreach ($res as $_arr){
+  	  	  $tmpProblem=new problem();
+  	  	  $tmpProblem->setIdByHand((int)$_arr["id"]);
+  	  	  $tmpProblem->setSid((int)$this->id);
+  	  	  $tmpProblem->setType((int)$_arr["ptype"]);
+  	  	  $tmpProblem->setDescript($_arr["description"]);
+  	  	  $tmpProblem->setIsEassy((int)$_arr["isEassy"]);
+  	  	  $tmpProblem->setOrder((int)$_arr["num"]);
+  	  	  $tmpProblem->AddOptionById();
+  	  	  $this->addProblem($tmpProblem);
+  	  	}
+  	  }
+  	}
+  	public function getSurveyById(){
+  	  if($this->id==0){
+  	  	return false;
+  	  }
+  	  else{
+  	    $this->sDb->select($this->sTable);
+  	    $this->sDb->where("id=$this->id");
+  	    $this->sDb->query();
+  	    $res=$this->sDb->getResultArray();
+  	    if(empty($res)){
+  	      return false;
+  	    }
+  	    $this->setBegin($res["begin"]);
+  	    $this->setClose($res["close"]);
+  	    $this->setDescript($res["descript"]);
+  	    $this->setOwner($res["owner"]);
+  	    $this->setRelease($res["isrelease"]);
+  	    $this->setTitle($res["title"]);
+  	    $this->setSubject($res["subject"]);
+  	    return true;
+  	  }
   	}
   	public function setRelease($isre){
   	  $this->isRelease=$isre;
@@ -48,18 +96,20 @@
   	  	}
   	  }
   	}
-  	public function setUrl(){
-      $arr=array();
-  	  $arr["surveyid"]=$this->id;
-  	  $arr["url"]=$this->url;
-  	  $this->sDb->insert($this->urlTable,$arr);
-  	  $this->sDb->query();
-  	}
   	public function getMD5url(){
   	  return myUlrmd5(''.$this->id);
   	}
-  	public function MkFile(){
+  	public function putUrlById(){
+  	  $id=$this->getSid();
+  	  $this->urlObject->setSurveyId($id);
+  	  $this->setUrlByid();
+  	  $this->urlObject->setUrl($this->url);
+  	  $this->urlObject->insertUrl();
+  	}
+  	public function setUrlById(){
   	  $this->url=$this->getMD5url();
+  	}
+  	public function MkFile(){
   	  $myfile = fopen("../s/".$this->url.".php", "w");
   	  fwrite($myfile, '<?php $fatherFile=__FILE__; require_once "../_core/superSurvey.php";?>');
   	}
@@ -128,12 +178,12 @@
 	  	$arr["begin"]=$this->begin;
 	  	$arr["close"]=$this->close;
 	  	$arr["isrelease"]=$this->isRelease;
-	  	$this->sDb->insert("survey",$arr);
+	  	$this->sDb->insert($this->sTable,$arr);
 	  	$this->sDb->query();
 	  	$this->isCreate=true;
 	  	$i=0;
 	  	$this->setSid();
-	  	$this->MkFile();
+	  	//$this->MkFile();
 	  	echo "before heerer";
 	  	foreach($this->problems as $problem){
 	  	  $i++;

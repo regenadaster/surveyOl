@@ -8,6 +8,9 @@
   <script type="text/javascript" src="../lib/createSurvey.js"></script>
   <script type="text/javascript" src="../lib/surveyDataProcess.js"></script>
   <style type="text/css">
+    body{
+      background-color:#eee;
+    }
     #editButton{
       display:none;
     }
@@ -44,7 +47,7 @@
 			<ul class="nav navbar-nav">
 				<a class="navbar-brand" href="#">System</a>
 				<li class="active">
-					<a href="#">Home</a>
+					<a href="http://127.0.0.1:8081/surveyOI/doc/home.php">Home</a>
 				</li>
 				<li>
 				<a href="http://127.0.0.1:8081/surveyOI/doc/createSurvey.php">
@@ -69,7 +72,7 @@
 	  <div class="row">
       <div class="row col-md-8 col-md-offset-2">
         <ul class="nav nav-tabs ">
-          <li><a href="#home" data-toggle="tab">创建新的问卷</a></li>
+          <li><a href="http://127.0.0.1:8081/surveyOI/doc/createSurvey.php" data-toggle="tab">创建新的问卷</a></li>
           <li><a href="#profile" data-toggle="tab">复制现有的问卷</a></li>
           <li><a href="#messages" data-toggle="tab">引用官方模板</a></li>
           <li><a href="#settings" data-toggle="tab">引用共享问题</a></li>
