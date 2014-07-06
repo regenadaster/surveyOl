@@ -1,5 +1,5 @@
 <?php
-  require_once "./_main.inc.php";
+  require_once "../_core/_main.inc.php";
   /*
   $sUrl=new surveyUrl();
   $sUrl->setUrl("asdfghjkl");
@@ -11,12 +11,12 @@
      $optionOne=array();
      $optionTwo=array();
      $dataSet=array();
-     $dataSet["title"]="okasdfsfasdfdgasdf";
-     $dataSet["descript"]="helafasasdfdfworld";
+     $dataSet["title"]="okasdfsfasdf";
+     $dataSet["descript"]="helafasas";
      $optionOne["type"]=0;
      $optionTwo["type"]=1;
-     $optionOne["descript"]="xuan asdfassd";
-     $optionTwo["descript"]="xuangasasdfasddfgang er";
+     $optionOne["descript"]="xuan a";
+     $optionTwo["descript"]="xua";
      $question=array();
      $questions=array();
      $question["descript"]="wentasi one";
@@ -47,7 +47,11 @@
     //$myhtml->addAttr("class",array("world","good"))->addAttr(array("id"=>"night"));
     //$myhtml->echoHtml();
     //var_dump($myhtml);
-    $myhtml=new createHtml($dataSet,1);
+     //$dataSet=$_POST["dataSet"];
+     setVal("userName","lgt");
+     $_interpreter=new interpreter($dataSet);
+     $_interpreter->echoUrl();
+   // $myhtml=new createHtml($dataSet,1);
     //echo "hello";
     //var_dump($myhtml);
   ?>

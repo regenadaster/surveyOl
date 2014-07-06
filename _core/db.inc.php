@@ -1,5 +1,5 @@
 <?php
-  require_once "./_main.inc.php";
+  require_once "../_core/_main.inc.php";
   class db{
   	private $isWhere;
   	private $link;
@@ -49,12 +49,12 @@
   	  	$this->sqlsen.=";";
   	  }
   	 // echo "   </br>";
-  	  var_dump($this->sqlsen);
-  	  echo "</br>";
+  	  //var_dump($this->sqlsen);
+  	  //echo "</br>";
   	  //var_dump($this->link);
   	  $this->result=mysql_query($this->sqlsen,$this->link);
-  	  var_dump($this->result);
-  	  echo "</br>";
+  	  //var_dump($this->result);
+  	  //echo "</br>";
   	  if(!$this->result){
   	  	die("error ".mysql_error());
   	  }

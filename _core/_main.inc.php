@@ -1,9 +1,9 @@
 <?php
-  require_once "_init.inc.php";
+  require_once "../_core/_init.inc.php";
   function __autoload($class_name){
-    $fileName=$class_name.'.inc.php';
-    if(file_exists($class_name.'.inc.php')){
-  	  require_once $class_name.'.inc.php';
+    $fileName="../_core/".$class_name.'.inc.php';
+    if(file_exists($fileName)){
+  	  require_once $fileName;
     }
   	else{
   	  $fileName="../_core/createHtml.inc.php";

@@ -1,5 +1,5 @@
 <?php 
-  require_once './_main.inc.php';
+  require_once '../_core/_main.inc.php';
   class interpreter{
     private $_dataSet;
     private $_survey;
@@ -7,9 +7,12 @@
     private $surveyId;
     private $surveyTailUrl;
     public function __construct($_data){
-      echo "come in";
+      //echo "come in";
       $this->_dataSet=$_data;
       $this->putSurvey();
+    }
+    public function echoUrl(){
+      echo $this->_survey->getFileUrl();
     }
     public function putSurvey(){
       $descript=$this->_dataSet['descript'];
@@ -19,22 +22,22 @@
       $begin=date('Y-m-d H:i:s',time());
       $close=date('Y-m-d H:i:s',strtotime("next year"));
       $owner=getVal("userName");
-      var_dump($descript);
-      echo "</br>";
-      var_dump($subject);
-      echo "</br>";
-      var_dump($title);
-      echo "</br>";
-      var_dump($isRelease);
-      echo "</br>";
-      var_dump($begin);
-      echo "</br>";
-      var_dump($close);
-      echo "</br>";
-      var_dump($owner);
-      echo "</br>";
+      //var_dump($descript);
+      //echo "</br>";
+      //var_dump($subject);
+      //echo "</br>";
+      //var_dump($title);
+      //echo "</br>";
+      //var_dump($isRelease);
+      //echo "</br>";
+      //var_dump($begin);
+      //echo "</br>";
+     // var_dump($close);
+      //echo "</br>";
+      //var_dump($owner);
+      //echo "</br>";
       $this->_survey=new survey($title,$subject,$descript,$owner,$begin,$close,$isRelease);
-      echo "after survey</br>";
+      //echo "after survey</br>";
       $this->putProblem();
       for($i=0;$i<count($this->_problems);$i++){
       	$this->_survey->addProblem($this->_problems[$i]);

@@ -1,5 +1,5 @@
 <?php
-  require_once './_main.inc.php';
+  require_once '../_core/_main.inc.php';
   class option{
   	private $id;
   	private $pnum;
@@ -80,7 +80,7 @@
   	  	$this->opDb->insert($this->dbTable, $arr);
   	  	$this->opDb->query();
   	  	$this->isCreate=true;
-  	  	echo "adsfasdf";
+  	  	//echo "adsfasdf";
   	  	$this->getId();
   	  }
   	}

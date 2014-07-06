@@ -1,5 +1,5 @@
 <?php
-  require_once './_main.inc.php';
+  require_once '../_core/_main.inc.php';
   class survey{
   	private $id;
   	private $title;
@@ -15,6 +15,7 @@
   	private $problems;//$problems is a array of problem class
   	private $urlObject;
   	private $sTable;
+  	private $fileUrl;
   	public function __construct($title="",$subject="",$descript="",$owner="",$begin="",$close="",$isRelease=0){
   	  $this->setTitle($title);
   	  $this->setSubject($subject);
@@ -77,6 +78,9 @@
   	    return true;
   	  }
   	}
+  	public function getProblems(){
+  	  return $this->problems;
+  	}
   	public function setRelease($isre){
   	  $this->isRelease=$isre;
   	}
@@ -111,7 +115,20 @@
   	}
   	public function MkFile(){
   	  $myfile = fopen("../s/".$this->url.".php", "w");
-  	  fwrite($myfile, '<?php $fatherFile=__FILE__; require_once "../_core/superSurvey.php";?>');
+  	  fwrite($myfile,
+  	   '<?php $fatherFile=__FILE__;
+  	   	  require_once "../_core/_main.inc.php";
+  	   	  require_once "../_core/packData.inc.php";
+  	  	  require_once "../_core/createHtml.inc.php";
+  	   		
+  	   	  $myPackData= new packData($fatherFile);
+  	   	  $dataSet=$myPackData->getDataSet();
+  	   	  $myHtml=new createHtml($dataSet,0);
+  	  ?>');
+  	  $this->fileUrl="../s/".$this->url.".php";
+  	}
+  	public function getFileUrl(){
+  	  return $this->fileUrl;
   	}
   	public function selectIdByTitleSubject(){
   	  $this->sDb->select("survey","id");
@@ -142,8 +159,17 @@
   	public function setTitle($_title){
   	  $this->title=$_title;
   	}
+  	public function getTitle(){
+  	  return $this->title;
+  	}
   	public function setSubject($_subject){
   	  $this->subject=$_subject;
+  	}
+  	public function getSubject(){
+  	  return $this->subject;
+  	}
+  	public function getDescript(){
+  	  return $this->descript;
   	}
   	public function setDescript($_descript){
   	  $this->descript=$_descript;
@@ -167,6 +193,21 @@
   	  $anotherFlag=!empty($this->owner)&&!empty($this->begin);
   	  return $flag&&$anotherFlag;
   	}
+  	public function sortProblems(){
+  	  if(count($this->problems)==0) return;
+  	  for($i=0;$i<count($this->problems);$i++){
+  	    for($j=$i+1;$j<count($this->problems);$j++){
+  	      if($this->problems[$i]->getOrder()>$this->problems[$j]->getOrder()){
+  	        $tmpPro=clone $this->problems[$i];
+  	        $this->problems[$i]=$this->problems[$j];
+  	        $this->problems[$j]=$tmpPro;
+  	      }
+  	    }
+  	  }
+  	  for($i=0;$i<count($this->problems);$i++){
+  	  	$this->problems[$i]->sortOptions();
+  	  }
+  	}
   	public function createSurvey(){
   	  if($this->checkSurvey()){
   	  	if($this->isCreate) return;
@@ -184,13 +225,13 @@
 	  	$i=0;
 	  	$this->setSid();
 	  	//$this->MkFile();
-	  	echo "before heerer";
+	  	//echo "before heerer";
 	  	foreach($this->problems as $problem){
 	  	  $i++;
-	  	  echo "just befor sid";
+	  	  //echo "just befor sid";
 	  	  $problem->setSid($this->getSid());
 	  	  $problem->setOrder($i);
-	  	  echo "heerer";
+	  	  //echo "heerer";
 	  	  $problem->createProblem();
 	  	}
   	  }

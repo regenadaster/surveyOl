@@ -1,5 +1,5 @@
 <?php
-  require_once './_main.inc.php';
+  require_once '../_core/_main.inc.php';
   class surveyUrl{
   	private $url;
   	private $surveyId;

@@ -89,7 +89,6 @@
           <button type="button" class="btn btn-default" id="multiplechoice">多选题</button>
           <button type="button" class="btn btn-default" id="judge">判断题</button>
           <button type="button" class="btn btn-default" id="eassyQuestion">问答题</button>
-          <button type="button" class="btn btn-default" id="preview">预览</button>
           <button type="button" class="btn btn-default" id="publish">发布</button>
         </div>
       </div>

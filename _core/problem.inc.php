@@ -1,5 +1,5 @@
 <?php
-  require_once './_main.inc.php';
+  require_once '../_core/_main.inc.php';
   class problem{
   	private $id;
   	private $surveyid;
@@ -75,11 +75,35 @@
   	public function setType($type){
   	  $this->ptype=$type;
   	}
+  	public function getType(){
+  	  return $this->ptype;
+  	}
   	public function setOrder($order){
   	  $this->order=$order;
   	}
+  	public function getOrder(){
+  	  return $this->order;
+  	}
   	public function setDescript($descri){
   	  $this->descri=$descri;
+  	}
+  	public function getDescript(){
+  	  return $this->descri;
+  	}
+  	public function sortOptions(){
+  	  if(count($this->options)==0) return;
+  	  for($i=0;$i<count($this->options);$i++){
+  	  	for($j=$i+1;$j<count($this->options);$j++){
+  	  	  if($this->options[$i]->getPnum()>$this->options[$j]->getPnum()){
+  	  	  	$tmpOpt=clone $this->options[$i];
+  	  	  	$this->options[$i]=$this->options[$j];
+  	  	  	$this->options[$j]=$tmpOpt;
+  	  	  }
+  	  	}
+  	  }
+  	}
+  	public function getOptions(){
+  	  return $this->options;
   	}
   	public function setIsEassy($isEassy){
   	  $this->isEassy=$isEassy;
