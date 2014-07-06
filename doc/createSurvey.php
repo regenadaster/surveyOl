@@ -40,6 +40,11 @@
     .addTAG:hover{
       cursor:hand;
     }
+    .removeTag{
+      display:none;
+      margin-top:-30px;
+      padding-top:-30px;
+    }
   </style>
   <body>
     <div class="container">
