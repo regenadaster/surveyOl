@@ -44,6 +44,15 @@
   	    $this->children[]=$_child;
   	  }
   	}
+  	public function appendTo($_father){
+  	  if($_father instanceof tag){
+  	    $_father->addChild($this);
+  	  }
+  	}
+  	public function getAllContent(){
+  	  $tmpStr=$this->addAllContent();
+  	  $this->setTagStr($tmpStr);
+  	}
   	/*****
   	 * addAllcontent() return all the content in the tag;
   	*/
@@ -57,7 +66,7 @@
   	  	$tmpStr.=$this->children[$i]->addAllContent();
   	  }
   	  $_pos=strrpos($this->getTagStr(),"<");
-  	  $firPart=substr($this->getTagStr(), 0,$_pos+1);
+  	  $firPart=substr($this->getTagStr(), 0,$_pos);
   	  $secPart=subStr($this->getTagStr(),$_pos);
   	  return $firPart.$tmpStr.$secPart;
   	}
@@ -161,6 +170,12 @@
   	  }
   	  $this->addAttr("href",$_url);
   	}
+  	public function setDefaultMeta(){
+  	  $this->setIsOne(1);
+  	  $this->setSlash(0);
+  	  $this->setDefaultTag("meta");
+  	  $this->addAttr("http-equiv","Content-Type")->addAttr('content',"text/html; charset=gb2312");
+  	}
   }
   class divTag extends tag{
   	public function __construct(){
@@ -172,7 +187,54 @@
   	private $head;
   	private $body;
   	public function __construct(){
-  	  
+  	  $this->setDefaultTag("html");
+  	  $this->head=new commonTag();
+  	  $this->body=new commonTag();
+  	  $this->head->setDefaultTag("head");
+  	  $this->body->setDefaultTag("body");
+  	  $this->body->addContent("hello");
   	}
+  	public function createStyle($_url){
+  	  $css=new commonTag();
+  	  $css->setIsStyle(1);
+  	  $css->setStyle();
+  	  $css->setStyleUrl($_url);
+  	  return $css;
+  	}
+  	public function createJs($_url){
+  	  $js=new commonTag();
+  	  $js->setIsJs(1);
+  	  $js->setJs();
+  	  $js->setJsUrl($_url);
+  	  return $js;
+  	}
+  	public function setCommonHead(){
+  	  $meta=new commonTag();
+  	  $meta->setDefaultMeta();
+  	  $meta->appendTo($this->head);
+  	  $title=new commonTag();
+  	  $title->setDefaultTag("title");
+  	  $title->appendTo($this->head);
+  	  $bootstrap=$this->createStyle(BootstrapUrl);
+  	  $bootstrap->appendTo($this->head);
+  	  $baseCss=$this->createStyle(BaseCss);
+  	  $baseCss->appendTo($this->head);
+  	  $Jquery=$this->createJs(Jquery);
+  	  $Jquery->appendTo($this->head);
+  	}
+  	public function packChildren(){
+      $this->addChild($this->head);
+      $this->addChild($this->body);
+  	}
+  }
+  class createHtml{
+  	private $html;
+    public function __construct(){
+      $this->html=new htmlTag();
+      $this->html->setCommonHead();
+      $this->html->packChildren();
+      $this->html->getAllContent();
+      $this->html->echoHtml();
+    }
   }
 ?>
