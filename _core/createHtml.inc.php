@@ -183,16 +183,52 @@
       $this->setDefaultTag("div");
   	}
   }
+  class labelTag extends tag{
+    public function __construct(){
+      parent::__construct();
+      $this->setDefaultTag("label");    	
+    }
+    public function setFor($val){
+      $this->addAttr("for",$val);
+    }
+  }
+  class inputTag extends tag{
+  	public function __construct(){
+  	  parent::__construct();
+  	  $this->setIsOne(1);
+  	  $this->setSlash(1);
+  	  $this->setDefaultTag("input");
+  	}
+  	public function setInputAttr($type=0,$id,$name,$value){
+  	  if($type==0){
+  	  	$this->addAttr("type","radio");
+  	  }
+  	  if($type==1){
+  	    $this->addAttr("type","checkbox");
+  	  }
+  	  if($type==2){
+  	  	$this->addAttr("type","radio");
+  	  }
+  	  if($type==3){
+  	  	
+  	  }
+  	  $this->addAttr("id",$id)->addAttr("name",$name)->addAttr("value",$value);
+  	}
+  }
   class htmlTag extends tag{
   	private $head;
   	private $body;
-  	public function __construct(){
+  	private $isTest;
+  	private $dataSet;
+  	public function __construct($dataSet,$test=0){
+  	  $this->isTest=$test;
+  	  $this->dataSet=$dataSet;
   	  $this->setDefaultTag("html");
   	  $this->head=new commonTag();
   	  $this->body=new commonTag();
   	  $this->head->setDefaultTag("head");
   	  $this->body->setDefaultTag("body");
-  	  $this->body->addContent("hello");
+  	  //$this->body->addContent("hello");
   	}
   	public function createStyle($_url){
   	  $css=new commonTag();
@@ -208,6 +244,24 @@
   	  $js->setJsUrl($_url);
   	  return $js;
   	}
+  	public function addBootstrap(){
+  	  $bootstrap=$this->createStyle(BootstrapUrl);
+      $bootstrap->appendTo($this->head);
+  	}
+  	public function addJquery(){
+  	  $Jquery=$this->createJs(Jquery);
+  	  $Jquery->appendTo($this->head); 		
+  	}
+  	public function addPicker(){
+  	  $pickerJs=$this->createJs(PickerJs);
+      $pickerJs->appendTo($this->head);
+      $pickerCss=$this->createStyle(PickerCss);
+      $pickerCss->appendTo($this->head);
+  	}
+  	public function addBaseJs(){
+  	  $basejs=$this->createJs(BaseJs);
+  	  $basejs->appendTo($this->head);
+  	}
   	public function setCommonHead(){
   	  $meta=new commonTag();
   	  $meta->setDefaultMeta();
@@ -215,23 +269,122 @@
   	  $title=new commonTag();
   	  $title->setDefaultTag("title");
   	  $title->appendTo($this->head);
-  	  $bootstrap=$this->createStyle(BootstrapUrl);
-  	  $bootstrap->appendTo($this->head);
+  	  $this->addJquery();
+  	  $this->addBootstrap();
+  	  $this->addPicker();
+  	  $this->addBaseJs();
   	  $baseCss=$this->createStyle(BaseCss);
   	  $baseCss->appendTo($this->head);
-  	  $Jquery=$this->createJs(Jquery);
-  	  $Jquery->appendTo($this->head);
   	}
   	public function packChildren(){
+  	  $this->setCommonHead();
+  	  $this->createBody();
       $this->addChild($this->head);
       $this->addChild($this->body);
+  	}
+  	public function createNullRow(){
+  	  $row=new divTag();
+  	  $row->addAttr("class","row")->addAttr("style","height:30px");
+  	  return $row;
+  	}
+  	public function createBaseRow(){
+  	  $row=new divTag();
+  	  $row->addAttr("class","row");
+  	  return $row;
+  	}
+  	public function createSyHeader(){
+  	  $row=$this->createBaseRow();
+  	  $smallNull=$this->createSmallNullRow();
+  	  $childRow=new divTag();
+  	  $childRow->addAttr("id","syHeader")->addAttr("class","col-md-8 col-md-offset-2");
+  	  $childRow->addContent("当前为预览页面，回答将不记入结果");
+  	  $childRow->appendTo($row);
+  	  return $row;
+  	}
+  	public function createBlueLineRow(){
+      $row=$this->createBaseRow();
+      $blueLine=new divTag();
+      $blueLine->addAttr("id","blueLine")->addAttr("class","margin_top col-md-offset-1 col-md-10");
+      $row->addChild($blueLine);
+      return $row;
+  	}
+  	public function createQuestionRow($qDescript,$countNum){
+  	  $row=$this->createBaseRow();
+  	  $questionRow=new divTag();
+  	  $questionRow->addAttr("class","margin_top col-md-offset-1 col-md-10");
+  	  $questionRow->addAttr("id","q".$countNum);
+  	  $questionRow->addContent($countNum.".".$qDescript);
+  	  $questionRow->appendTo($row);
+  	  return $row;
+  	}
+  	public function createOptionRow($oNum,$qNum){
+  	  $optionRow=new divTag();
+  	  $optionRow->addAttr("class","question marg_top col-md-offset-1");
+  	  $optionRow->addAttr("id","q".$qNum."o".$oNum);
+  	  return $optionRow;
+  	}
+  	public function createSmallNullRow(){
+  	  $row=$this->createBaseRow();
+  	  $row->addAttr("class","smallNullRow");
+  	  return $row;
+  	}
+  	public function createSybodyRow(){
+  	  $row=$this->createBaseRow();
+  	  $sybody=new divTag();
+  	  $sybody->addAttr("id","syBody")->addAttr("class","col-md-8 col-md-offset-2");
+  	  $title=new divTag();
+  	  $title->addAttr(id,"sytitle")->addAttr("class","margin_top");
+  	  $title->addContent($this->dataSet["title"]);
+  	  $descript=new divTag();
+  	  $descript->addAttr("id","sydescript")->addAttr("class","margin_top col-md-offset-1");
+  	  $descript->addContent($this->dataSet["descript"]);
+  	  $blueLine=$this->createBlueLineRow();
+  	  $title->appendTo($sybody);
+  	  $descript->appendTo($sybody);
+  	  $blueLine->appendTo($sybody);
+  	  for($i=0;$i<count($this->dataSet["questions"]);$i++){
+  	  	$quData=$this->dataSet["questions"][$i];
+  	  	$que=$this->createQuestionRow($quData[descript],$i+1);
+  	  	$que->appendTo($sybody);
+  	  	$small=$this->createSmallNullRow();
+  	  	$small->appendTo($sybody);
+  	  	for($j=0;$j<count($quData["options"]);$j++){
+  	  	  $optData=$quData["options"][$j];
+  	  	  $quFather=$this->createBaseRow();
+  	  	  $optionFather=$this->createOptionRow($j+1, $i+1);
+          $opt=new inputTag();
+          $idStr="q".($i+1)."o".($j+1);
+          $opt->setInputAttr($optData["type"],$idStr."input", "q".($i+1)."name", "q".($i+1)."value");
+          $optLabel=new labelTag();
+          $optLabel->setFor($idStr."input");
+          $optLabel->addContent($optData["descript"]);
+          $opt->appendTo($optionFather);
+          $optLabel->appendTo($optionFather);
+          $optionFather->appendTo($quFather);
+          $quFather->appendTo($sybody);
+  	  	}
+  	  }
+  	  $sybody->appendTo($row);
+  	  return $row;
+  	}
+  	public function createBody(){
+  	  $container=new divTag();
+  	  $container->addAttr("class","container");
+  	  if($this->isTest==1){
+  	  	$syheader=$this->createSyHeader();
+  	  	$syheader->appendTo($container);
+  	  }
+  	  $nullDiv=$this->createNullRow();
+  	  $nullDiv->appendTo($container);
+  	  $sybody=$this->createSybodyRow();
+  	  $sybody->appendTo($container);
+  	  $container->appendTo($this->body);
   	}
   }
   class createHtml{
   	private $html;
-    public function __construct(){
-      $this->html=new htmlTag();
-      $this->html->setCommonHead();
+    public function __construct($dataSet,$test){
+      $this->html=new htmlTag($dataSet,$test);
       $this->html->packChildren();
       $this->html->getAllContent();
       $this->html->echoHtml();

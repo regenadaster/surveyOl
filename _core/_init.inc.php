@@ -10,7 +10,6 @@
   defined("Jquery")||define("Jquery","../Jquery/jquery.js");
   defined("BaseCss")||define("BaseCss","../css/base.css");
   defined("BaseJs")||define("BaseJs","../lib/createHtml.js");
-
-  
-  
+  defined("PickerCss")||define("PickerCss","../pickerSrc/jquery.fs.picker.css");
+  defined("PickerJs")||define("PickerJs","../pickerSrc/jquery.fs.picker.js");
   ?>

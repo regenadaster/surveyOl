@@ -1,3 +1,28 @@
 body{
-  background-color:#EFEFEF;
+  background-color:#ddd;
+  font-size:18;
+}
+#syHeader{
+  padding-top:8px;
+  background-color:#FDF9CD;
+  height:40px;
+}
+#syBody{
+  background-color:#fff;
+}
+#sytitle{
+  text-align:center;
+}
+#blueLine{
+  height:3px;
+  background-color:#55a1e3;
+}
+.margin_top{
+  margin-top:20px;
+}
+.smallNullRow{
+  height:10px;
+}
+.question{
+  padding-left:30px;
 }
