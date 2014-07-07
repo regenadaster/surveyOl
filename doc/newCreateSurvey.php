@@ -4,12 +4,16 @@
   <title>createSurvey</title>
   <link rel="stylesheet" href="../Bootstrap/dist/css/bootstrap.min.css" type="text/css">  
   <script type="text/javascript" src="../Jquery/jquery.js"></script>
+  <script type="text/javascript" src="../pickerSrc/jquery.fs.picker.js"></script>
+  <link rel="stylesheet" type="text/css" href="../pickerSrc/jquery.fs.picker.css">
   <script type="text/javascript" src="../lib/common.js"></script>
-  <script type="text/javascript" src="../lib/createSurvey.js"></script>
+  <script type="text/javascript" src="../lib/newCreateSurvey.js"></script>
   <script type="text/javascript" src="../lib/surveyDataProcess.js"></script>
   <style type="text/css">
     body{
       background-color:#eee;
+    }
+    #createRow{
     }
     #editButton{
       display:none;
@@ -25,6 +29,7 @@
       padding-bottom:10;
       border-style:solid;
       border-color:#e7e7e7;
+      background-color:#fff;
       border-radius:5px;
       cursor:text;
     }
@@ -45,9 +50,38 @@
       border-color:#e7e7e7;
       border-radius:5px;
     }
-  </style>
-  <body>
+    #titleRow{
+    }
+    #title{
+      text-align:center;
+    }
+    .preDiv{
+      height:20px;
+      border:solid;
+      padding-left:30px;
+      border-color:#eee;
+      background-color:#fff;
+    }
+    .blocks{
+      background-color:#fff;
+    }
+    #titleBlocks{
+      text-align:center;
+    }
+    .limit{
+      max-width:400px;
+    }
+    .oneLimit{
+    }
+    #table1{
+      text-align:center;
+    }
+    .glyphicon{
+      display:none;
+    }
+  </style><body>
     <div class="container">
+            <div class="row">
     		<div class="navbar-collapse collapse" style="background-color:#f8f8f8;border-color:#e7e7e7; margin-bottom:20px;">
 			<ul class="nav navbar-nav">
 				<a class="navbar-brand" href="#">System</a>
@@ -83,8 +117,9 @@
           <li><a href="#settings" data-toggle="tab">引用共享问题</a></li>
         </ul>
       </div>
+      </div>
       <div class="row col-md-8 col-md-offset-2"  id="titleRowSet">
-        <div class="col-md-2">
+        <div>
           <span id="titleSet"></span>
         </div>
       </div>
@@ -97,13 +132,7 @@
           <button type="button" class="btn btn-default" id="publish">发布</button>
         </div>
       </div>
-      </br>
-      </br>
-      </br>
-      </br>
-      </br>
-      </br>
-      </br>
+      <div class="row hideStyle" style="height:120px"></div>
       <div class="row col-md-8 col-md-offset-2" id="titleRow">
         <div class="col-md-3">
          <span><h5 id="title">新问卷标题</h5></span>
@@ -114,16 +143,18 @@
       </div>
       </br>
       </br>
-            </br>
-      </br>
-            </br>
-
+       </br>
+      <div class="row" style="height:20px"></div>
       <div class="row col-md-8 col-md-offset-2" id="createRow">
         <div class="col-md-offset-2">
           <button type="button" class="btn btn-primary" id="createBtn">创建问卷</button>
         </div>
       </div>
-      <div class="col-md-10 col-md-offset-1" id="BlockContainer">
+      </div>
+      <div class="row">
+      <div class="col-md-8 col-md-offset-2" id="BlockContainer">
+        <div class="row" id="blocksContent">
+        </div>
       </div>
       </div>
     </div>
