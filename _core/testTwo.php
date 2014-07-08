@@ -4,6 +4,7 @@
   //$remoteuser->setSurveyId(2);
   //$tmpcount=$remoteuser->getSubveyAnswerNum();
   //echo $tmpcount;
+  /*
   $dataSet["surveyId"]="a966bb1";
   $dataSet["answer"]=array();
   $dataSet["answer"][]="q1o1";
@@ -27,4 +28,13 @@
   	$tmpAnswer->setUserId($ownerId);
   	$tmpAnswer->createAnswer();
   }
+  */
+  setVal("userName","lgt");
+  setVal("password","5363513l");
+  $remoteUser=new user();
+  $remoteUser->setName(getVal("userName"));
+  $remoteUser->setPasswd(getVal("password"));
+  $tmpUserSurvey=new userSurvey($remoteUser);
+  $dataSet=$tmpUserSurvey->getDataSet();
+  var_dump($dataSet);
   ?>

@@ -92,6 +92,9 @@
   	public function setRelease($isre){
   	  $this->isRelease=$isre;
   	}
+  	public function getRelease(){
+  	  return (int)$this->isRelease;
+  	}
   	/*you can addProblem(new problem());
   	*  also you can use problem's params;
   	*
@@ -193,6 +196,9 @@
   	}
   	public function setBegin($_begin){
   	  $this->begin=$_begin;
+  	}
+  	public function getBegin(){
+  	  return $this->begin;
   	}
   	public function setClose($_close){
   	  $this->close=$_close;

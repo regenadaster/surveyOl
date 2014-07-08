@@ -49,12 +49,12 @@
   	  	$this->sqlsen.=";";
   	  }
   	 // echo "   </br>";
-  	  var_dump($this->sqlsen);
-  	  echo "</br>";
+  	  //var_dump($this->sqlsen);
+  	  //echo "</br>";
   	  //var_dump($this->link);
   	  $this->result=mysql_query($this->sqlsen,$this->link);
-  	  var_dump($this->result);
-  	  echo "</br>";
+  	  //var_dump($this->result);
+  	  //echo "</br>";
   	  if(!$this->result){
   	  	die("error ".mysql_error());
   	  }

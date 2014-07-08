@@ -66,7 +66,9 @@ mark;
    	 $remoteUser=new user();
      $remoteUser->setName(getVal("userName"));
      $remoteUser->setPasswd(getVal("password"));
-     $remoteUser->getAllSurveys();
+     $tmpUserSurvey=new userSurvey($remoteUser);
+     $dataSet=$tmpUserSurvey->getDataSet();
+     echo json_encode($dataSet);
    }
    if($_GET['query']=="dataCollection"){
    	 $dataSet=$_POST["dataSet"];
