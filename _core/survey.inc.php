@@ -16,7 +16,9 @@
   	private $urlObject;
   	private $sTable;
   	private $fileUrl;
-  	public function __construct($title="",$subject="",$descript="",$owner="",$begin="",$close="",$isRelease=0){
+  	private $surveyUser;
+  	private $ownerName;
+  	public function __construct($title="",$subject="",$descript="",$owner=0,$begin="",$close="",$isRelease=0){
   	  $this->setTitle($title);
   	  $this->setSubject($subject);
   	  $this->setDescript($descript);
@@ -30,6 +32,12 @@
   	  $this->urlObject=new surveyUrl();
   	  $this->id=0;
   	  $this->sTable="survey";
+  	  $this->surveyUser=new user();
+  	}
+  	public function setUser($_name,$_passwd){
+  	  $this->surveyUser->setName($_name);
+  	  $this->surveyUser->setPasswd($_passwd);
+  	  $this->owner=$this->surveyUser->getId();
   	}
   	public function setIdByHand($_id){
   	  $this->id=$_id;
@@ -131,8 +139,11 @@
   	  return $this->fileUrl;
   	}
   	public function selectIdByTitleSubject(){
+  	  if($this->owner==0){
+  	    
+  	  }
   	  $this->sDb->select("survey","id");
-  	  $this->sDb->where("title=\"$this->title\" AND owner=\"$this->owner\" AND subject=\"$this->subject\"");
+  	  $this->sDb->where("title=\"$this->title\" AND owner=$this->owner AND subject=\"$this->subject\"");
   	  $this->sDb->query();
   	  $tmp=$this->sDb->getResultArray();
   	  return $tmp;  	  
@@ -190,7 +201,7 @@
   	 */
   	public function checkSurvey(){
   	  $flag=!empty($this->title)&&!empty($this->subject)&&!empty($this->descript)&&!empty($this->close);
-  	  $anotherFlag=!empty($this->owner)&&!empty($this->begin);
+  	  $anotherFlag=!($this->owner==0)&&!empty($this->begin);
   	  return $flag&&$anotherFlag;
   	}
   	public function sortProblems(){

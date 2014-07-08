@@ -11,12 +11,12 @@
      $optionOne=array();
      $optionTwo=array();
      $dataSet=array();
-     $dataSet["title"]="你好吗asdfasdf";
-     $dataSet["descript"]="我很好asdfasdf";
+     $dataSet["title"]="hasdfaaaasdf";
+     $dataSet["descript"]="aaaasaaadfasdf";
      $optionOne["type"]=0;
      $optionTwo["type"]=1;
-     $optionOne["descript"]="我的天啊asdfasdf";
-     $optionTwo["descript"]="你的天啊asdfasdf";
+     $optionOne["descript"]="bbbbasdfasdf";
+     $optionTwo["descript"]="asdfasdfasdf";
      $question=array();
      $questions=array();
      $question["descript"]="wentasigsdfgsdfg oneasdfasdf";
@@ -49,6 +49,7 @@
     //var_dump($myhtml);
      //$dataSet=$_POST["dataSet"];
      setVal("userName","lgt");
+     setVal("password","5363513l");
      $_interpreter=new interpreter($dataSet);
      $_interpreter->echoUrl();
    // $myhtml=new createHtml($dataSet,1);

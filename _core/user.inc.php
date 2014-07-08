@@ -5,10 +5,39 @@
   	private $passwd;
   	private $id;
   	private $uDb;
+  	private $userTable;
+  	private $surveys;
   	public function __construct($_name="",$_passwd=""){
   	  $this->setName($_name);
   	  $this->setPasswd($_passwd);
   	  @$this->uDb=db::getInstance("127.0.0.1","root","");
+  	  $this->id=0;
+  	  $this->userTable="user";
+  	  $this->surveys=array();
+  	}
+  	public function putSurvey($_survey){
+  	  $this->surveys[]=$_survey;
+  	}
+  	public function getSurveys(){
+  	  return $this->surveys;
+  	}
+  	public function getAllSurveys(){
+  	  if($this->id==0){
+  	    $this->setId();
+  	  }
+  	  $tmpStr="owner=$this->id";
+  	  $this->uDb->select("survey","id");
+  	  $this->uDb->where($tmpStr);
+  	  $this->uDb->query();
+  	  $res=$this->uDb->getResultArray();
+  	  foreach ($res as $arr){
+  	    $tmpSurvey=new survey();
+  	    $tmpSurvey->setIdByHand($arr["id"]);
+  	    $tmpSurvey->getSurveyById();
+  	    $tmpSurvey->AddProblemById();
+  	    $tmpSurvey->setUser($this->name, $this->passwd);
+  	    $this->putSurvey($tmpSurvey);
+  	  }
   	}
   	public function setName($_name){
   	  $this->name=$_name;
@@ -18,6 +47,43 @@
   	}
   	public function setPasswd($_passwd){
   	  $this->passwd=$_passwd;
+  	}
+  	public function setIdbyHand($_id){
+  	  $this->id=$_id;
+  	}
+  	public function getNameAndPasswdById(){
+  	  if($this->id==0){
+  	    return false;
+  	  }
+  	  else{
+  	    $str="id=\"$this->id\"";
+  	    $this->uDb->select($this->userTable);
+  	    $this->uDb->where($str);
+  	    $this->uDb->query();
+  	    $res=$this->uDb->getResultArray();
+  	    if(empty($res)){
+  	      return false;
+  	    }
+  	    else{
+  	      $this->name=$res["name"];
+  	      $this->passwd=$res["passwd"];
+  	      return true;
+  	    }
+  	  }
+  	}
+  	public function setId(){
+  	  $str="name=\"$this->name\" AND passwd=\"$this->passwd\"";
+  	  $this->uDb->select($this->userTable,"id");
+  	  $this->uDb->where($str);
+  	  $this->uDb->query();
+      $res=$this->uDb->getResultArray();
+      $this->id=$res['id'];
+  	}
+  	public function getId(){
+  	  if($this->id==0){
+  	    $this->setId();
+  	  }
+  	  return $this->id;
   	}
   	public function getPasswd(){
   	  return $this->passwd;
@@ -53,7 +119,7 @@
   	  if($tof){
   	  	$_SESSION["userName"]=$_POST['user'];
   	  	setVal("password",$_POST["password"]);
-        header("Location: http://127.0.0.1:8081/surveyOi/doc/home.php");
+        header("Location: http://127.0.0.1:8081/surveyOI/doc/home.php");
   			/*$str=<<<mark
   		    <script language="javascript"type="text/javascript">
   			alert("shshhd");

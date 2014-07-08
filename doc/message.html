@@ -1,0 +1,77 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link href="../bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" media="screen" />
+<script src="../jquery/jquery.js"></script>
+<script src="../bootstrap/dist/js/bootstrap.js"></script>
+<script src="../pickerSrc/jquery.fs.picker.js"></script>
+<link href="../pickerSrc/jquery.fs.picker.css" rel="stylesheet" media="screen" />
+  <script type="text/javascript">
+  $(document).ready(function() {$("input[type=radio], input[type=checkbox]").picker();});
+  </script>
+  <style type="text/css">
+  body{
+	background-color:#eee;
+  }
+  .message{
+    border:solid;
+  	border-color:#fff;
+  	border-radius:5px;
+  	background-color:#fff;
+  	padding-bottom:50px;
+  	padding-top:50px;
+  	padding-left:20px;
+  }
+  
+  </style>
+<title>Insert title here</title>
+</head>
+<body>
+<div class="container">
+	<div class="navbar-collapse collapse" style="background-color:#f8f8f8;border-color:#e7e7e7; margin-bottom:20px;">
+			<ul class="nav navbar-nav">
+				<a class="navbar-brand" href="#">System</a>
+				<li class="active">
+					<a href="#">Home</a>
+				</li>
+				<li>
+				<a href="#questionnaire">
+					Questionnaire
+				</a>
+				</li>
+				<li>
+				<a href="#about">
+					About
+				</a>
+				</li>
+			</ul>
+			<ul class="nav navbar-nav navbar-right">
+				<li>
+				<a href="#login">login</a>
+				</li>
+				<li>
+					<a href="#sign">sign</a>
+				</li>
+			</ul>
+		</div>
+	<br>
+	<div class="message col-md-6 col-md-offset-3">
+		<h4>请完善你的个人信息</h4>
+		<div>
+			<label>
+			性别：
+			</label>
+			<label><input type="radio" name="sex">男</label>
+			<label><input type="radio" name="sex">女</label>
+		</div>
+		<label>您的标签：</label>
+		<label><input type="checkbox">学生</label>
+		<label><input type="checkbox">搬砖的</label>
+		<label><input type="checkbox">公务员</label>
+		<label><input type="checkbox">软件从业人员</label>
+		<button class="btn btn-primary col-md-offset-2">提交</button>
+	</div>
+</div>
+</body>
+</html>

@@ -174,7 +174,7 @@
   	  $this->setIsOne(1);
   	  $this->setSlash(0);
   	  $this->setDefaultTag("meta");
-  	  $this->addAttr("http-equiv","Content-Type")->addAttr('content',"text/html; charset=gb2312");
+  	  $this->addAttr("http-equiv","Content-Type")->addAttr('content',"text/html; charset=utf-8");
   	}
   }
   class divTag extends tag{

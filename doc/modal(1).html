@@ -1,0 +1,44 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link href="../bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" media="screen" />
+<script src="../jquery/jquery.js"></script>
+<script src="../bootstrap/dist/js/bootstrap.js"></script>
+<script src="../pickerSrc/jquery.fs.picker.js"></script>
+<link href="../pickerSrc/jquery.fs.picker.css" rel="stylesheet" media="screen" />
+  <script type="text/javascript">
+  $(document).ready(function() {$("input[type=radio], input[type=checkbox]").picker();});
+  </script>
+<title>Insert title here</title>
+</head>
+<body>
+	<button class="btn btn-primary" data-toggle="modal" data-target="#mymodal">test</button>
+		<div id="mymodal" class="modal" tabindex="-1" role="dialog" aria-hidden="false">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+					<h4>回答限制</h4>
+					</div>
+					<div class="modal-body">
+							<label><input type="checkbox">允许匿名回答</label>
+							<label><input type="checkbox">每个ip只能回答一次</label>
+							<label><input type="checkbox">每个用户只能回答一次</label>
+							<label>性别限制：</label>
+							<input type="checkbox" name="sex" id="boy"><label for="boy">男</label>
+							<input type="checkbox" name="sex" id="girl"><label for="girl">女</label>
+							<label>选择发布人群</label>
+							<label><input type="checkbox">学生</label>
+							<label><input type="checkbox">搬砖的</label>
+							<label><input type="checkbox">公务员</label>
+							<label><input type="checkbox">软件从业人员</label>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">close</button>
+						<button class="btn btn-primary">save</button>
+					</div>
+				</div>
+			</div>
+		</div>
+</body>
+</html>

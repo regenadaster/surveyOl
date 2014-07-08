@@ -31,6 +31,9 @@
   	}
   	public function insertUrl(){
   	  $arr=array();
+  	  if($this->surveyId==0){
+  	    
+  	  }
   	  $arr["surveyid"]=$this->surveyId;
   	  $arr["url"]=$this->url;
   	  $this->syDb->insert($this->sUrlTable,$arr);

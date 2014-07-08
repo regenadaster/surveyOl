@@ -1,0 +1,127 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link href="../bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" media="screen" />
+<link href="../lib/justified-nav.css" rel="stylesheet" media="screen" />
+<script src="../jquery/jquery.js"></script>
+<style type="text/css">
+  body{
+	background-color:#eee;
+  	padding-top:0px;
+  }
+  .result{
+	 border:solid;
+  	border-color:#fff;
+  	border-radius:5px;
+  	background-color:#fff;
+  	padding-bottom:50px;
+  	padding-top:50px;
+  	padding-left:20px;
+  	padding-right:20px;
+  }
+  .single{
+	 border:solid;
+  	border-color:#eee;
+  	border-width:1px;
+ 
+  }
+  .shead{
+	background-color:#fafafa;
+  	height:40px;
+  	padding:5px 10px;
+  }
+  .sbody{
+	margin:20px 200px;
+  }
+  .spic{
+	padding:5px 10px;
+  }
+  .stable{
+  	border:solid;
+  	border-color:#eee;
+  	border-width:1px;
+  }
+ </style>
+<title>Insert title here</title>
+</head>
+<body>
+<div class="container">
+	<div class="navbar-collapse collapse" style="background-color:#f8f8f8;border-color:#e7e7e7; margin-bottom:20px;">
+			<ul class="nav navbar-nav">
+				<a class="navbar-brand" href="#">System</a>
+				<li class="active">
+					<a href="#">Home</a>
+				</li>
+				<li>
+				<a href="#questionnaire">
+					Questionnaire
+				</a>
+				</li>
+				<li>
+				<a href="#about">
+					About
+				</a>
+				</li>
+			</ul>
+			<ul class="nav navbar-nav navbar-right">
+				<li>
+				<a href="#login">login</a>
+				</li>
+				<li>
+					<a href="#sign">sign</a>
+				</li>
+			</ul>
+		</div>
+		<div class="result">
+			<h3 style="text-align:center">Questionnaire</h3>
+			<div class="single">
+				<div class="shead">
+					<span style="float:left;margin-top:4px;">Q1单选</span>
+					<div style="float:right">
+						<table>
+							<tbody>
+							<tr>
+								<td><button class="btn btn-default btn-sm">按时间排序</button></td>
+								<td><button class="btn btn-default btn-sm">饼图</button></td>
+								<td><button class="btn btn-default btn-sm">柱状图 	</button></td>
+							</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+				<div class="sbody">
+					<div class="spic">
+						<h2>picture</h2>
+					</div>
+					<table class="stable table table-condensed table-bordered">
+						<tbody>
+							<tr>
+								<td class="col-md-8">答案选项</td>
+								<td class="col-md-4">回复情况</td>
+							</tr>
+							<tr>
+								<td class="col-md-8">a</td>
+								<td class="col-md-4">50%</td>
+							</tr>
+							<tr>
+								<td class="col-md-8">b</td>
+								<td class="col-md-4">50%</td>
+							</tr>
+							<tr>
+								<td class="col-md-8">总参与人数</td>
+								<td class="col-md-4">2</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+			<div style="padding:20px 50px;">
+				<textarea rows="3" style="width:100%; margin-top:40px;margin-bottom:40px;" placeholder="输入你的分析结果"></textarea>
+				<button class="btn btn-primary">提交</button>
+			</div>
+		</div>
+
+</div>
+</body>
+</html>

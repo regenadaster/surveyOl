@@ -7,13 +7,16 @@
   	 @$username=$_POST["user"];
   	 @$password=$_POST["password"];
   	 @$myuser=new user($username,$password);
-  	 //var_dump($_POST["user"]);
-  	 //var_dump($_POST["password"]);
-  	 //var_dump($password);
   	 @$myuser->loopPage();
 	  
 	//@$myuser->createUser();
    }
+  if($_GET["query"]=="logout"){
+    $_SESSION["username"]='';
+    $_SESSION["password"]='';
+    session_destroy();
+    header("Location: http://127.0.0.1:8081/surveyOI/doc/home.php");
+  }
   if(@$_GET["query"]==="sign"){
    	@$username=$_POST["user"];
  	@$password=$_POST["password"];
@@ -55,10 +58,15 @@ mark;
    }
    if($_GET["query"]=="survey"){
      $dataSet=$_POST["dataSet"];
-     //echo $dataSet["descript"];
-     setVal("userName","lgt");
+     //echo $_SESSION["password"];
      $_interpreter=new interpreter($dataSet);
      $_interpreter->echoUrl();
+   }
+   if($_GET["query"]=="userSurvey"){
+   	 $remoteUser=new user();
+     $remoteUser->setName(getVal("userName"));
+     $remoteUser->setPasswd(getVal("password"));
+     $remoteUser->getAllSurveys();
    }
   ?>
   
