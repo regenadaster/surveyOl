@@ -188,6 +188,9 @@
   	public function setOwner($_owner){
   	  $this->owner=$_owner;
   	}
+  	public function getOwner(){
+  	  return $this->owner;
+  	}
   	public function setBegin($_begin){
   	  $this->begin=$_begin;
   	}

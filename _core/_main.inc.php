@@ -47,6 +47,15 @@
   function setVal($name,$val){
     $_SESSION[$name]=$val;
   }
+  function getQNum($_str){
+    $oPos=strpos($_str,'o');
+    $qPos=strpos($_str,'q');
+    return substr($_str,1,$oPos-1);
+  }
+  function getOptNum($_str){
+    $oPos=strpos($_str);
+    return substr($_str,$oPos+1,$oPos+1);
+  }
   function myUlrmd5($str){
   	$str.="survey";
   	$newStr=md5($str);

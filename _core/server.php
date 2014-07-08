@@ -70,7 +70,26 @@ mark;
    }
    if($_GET['query']=="dataCollection"){
    	 $dataSet=$_POST["dataSet"];
-   	 echo ($dataSet["answer"]);
+   	 $tmpUrl=new surveyUrl();
+   	 $tmpUrl->setUrl($dataSet["surveyId"]);
+   	 $tmpUrl->setSidFromDb();
+   	 $surveyId=$tmpUrl->getSurveyId();
+   	 $tmpSurvey=new survey();
+   	 $tmpSurvey->setIdByHand($surveyId);
+   	 $tmpSurvey->getSurveyById();
+   	 $ownerId=$tmpSurvey->getOwner();
+   	 for($i=0;$i<count($dataSet["answer"]);$i++){
+   	   $onum=(int)getOptNum($dataSet["answer"][$i]);
+   	   $qnum=getQNum($dataSet["answer"][$i]);
+   	   $tmpAnswer=new userAnswer();
+   	   $tmpAnswer->setAnswer($onum);
+   	   $tmpAnswer->setProblemId($qnum);
+   	   $tmpAnswer->setIsEassy(0);
+   	   $tmpAnswer->setSurveyId($surveyId);
+   	   $tmpAnswer->setUserId($ownerId);
+   	   $tmpAnswer->createAnswer();
+   	 }
+   	 //echo ($dataSet["answer"]);
    }
   ?>
   

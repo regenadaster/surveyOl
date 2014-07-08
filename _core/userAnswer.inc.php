@@ -8,6 +8,7 @@
   	private $isEassy;
   	private $answer;
   	private $uaDb;
+  	private $description;
   	private $userAnswerTb;
   	public function __construct(){
   	  $this->id=0;
@@ -17,6 +18,7 @@
   	  $this->isEassy=0;
   	  $this->answer=0;
   	  $this->userAnswerTb="useranswer";
+  	  $this->description=" ";
   	  $this->uaDb=db::getInstance(MYSQLHOST,MYSQLUSER,MYSQLPS);
   	}
   	public function getSubveyAnswerNum(){
@@ -31,6 +33,17 @@
   	    $res=$this->uaDb->getResultArray();
   	    return $res["num"];
   	  }
+  	}
+  	public function createAnswer(){
+  	  $arr=array();
+  	  $arr["userid"]=$this->userid;
+  	  $arr["surveyid"]=$this->surveyid;
+  	  $arr["isEassy"]=$this->isEassy;
+  	  $arr["answer"]=$this->answer;
+  	  $arr["problemid"]=$this->problemid;
+  	  $arr["description"]=$this->description;
+  	  $this->uaDb->insert($this->userAnswerTb,$arr);
+  	  $this->uaDb->query();
   	}
   	public function getUserAnswerById(){
   	  if($this->id==0){
@@ -68,7 +81,7 @@
   	  return $this->surveyid;
   	}
   	public function setProblemId($_id){
-  	  $this->surveyid=$_id;
+  	  $this->problemid=$_id;
   	}
   	public function getProblemId(){
   	  return $this->problemid;
