@@ -12,4 +12,5 @@
   defined("BaseJs")||define("BaseJs","../lib/createHtml.js");
   defined("PickerCss")||define("PickerCss","../pickerSrc/jquery.fs.picker.css");
   defined("PickerJs")||define("PickerJs","../pickerSrc/jquery.fs.picker.js");
+  defined("DataCollectionJs")||define("DataCollectionJs","../lib/dataCollection.js");
   ?>

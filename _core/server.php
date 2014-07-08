@@ -68,5 +68,9 @@ mark;
      $remoteUser->setPasswd(getVal("password"));
      $remoteUser->getAllSurveys();
    }
+   if($_GET['query']=="dataCollection"){
+   	 $dataSet=$_POST["dataSet"];
+   	 echo ($dataSet["answer"]);
+   }
   ?>
   

@@ -262,6 +262,10 @@
   	  $basejs=$this->createJs(BaseJs);
   	  $basejs->appendTo($this->head);
   	}
+  	public function addDataCollectionJs(){
+      $dataCollectionJs=$this->createJs(DataCollectionJs);
+      $dataCollectionJs->appendTo($this->head);
+  	}
   	public function setCommonHead(){
   	  $meta=new commonTag();
   	  $meta->setDefaultMeta();
@@ -275,6 +279,7 @@
   	  $this->addBaseJs();
   	  $baseCss=$this->createStyle(BaseCss);
   	  $baseCss->appendTo($this->head);
+  	  $this->addDataCollectionJs();
   	}
   	public function packChildren(){
   	  $this->setCommonHead();
@@ -364,8 +369,22 @@
           $quFather->appendTo($sybody);
   	  	}
   	  }
+  	  $_tmpRow=new divTag();
+  	  $_tmpRow->addAttr("class","row col-md-offset-2")->addAttr("id","commitRow");
+  	  $_cButton=$this->createCommitButton();
+  	  $_cButton->appendTo($_tmpRow);
+  	  $_tmpRow->appendTo($sybody);
+  	  $anotherNullRow=$this->createSmallNullRow();
+  	  $anotherNullRow->appendTo($sybody);
   	  $sybody->appendTo($row);
   	  return $row;
+  	}
+  	public function createCommitButton(){
+  	  $cButton=new commonTag();
+  	  $cButton->setDefaultTag("button");
+  	  $cButton->addContent("commit");
+  	  $cButton->addAttr("type","button")->addAttr("class","btn btn-primary")->addAttr("id","commitBtn");
+  	  return $cButton;
   	}
   	public function createBody(){
   	  $container=new divTag();

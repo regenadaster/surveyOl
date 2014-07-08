@@ -11,8 +11,26 @@
   	private $userAnswerTb;
   	public function __construct(){
   	  $this->id=0;
+  	  $this->userid=0;
+  	  $this->surveyid=0;
+  	  $this->problemid=0;
+  	  $this->isEassy=0;
+  	  $this->answer=0;
   	  $this->userAnswerTb="useranswer";
   	  $this->uaDb=db::getInstance(MYSQLHOST,MYSQLUSER,MYSQLPS);
+  	}
+  	public function getSubveyAnswerNum(){
+  	  if($this->surveyid==0){
+  	    return false;
+  	  }
+  	  else{
+  	    $tmpStr="surveyid=$this->surveyid";
+  	    $this->uaDb->select($this->userAnswerTb,"count(id) as num");
+  	    $this->uaDb->where($tmpStr);
+  	    $this->uaDb->query();
+  	    $res=$this->uaDb->getResultArray();
+  	    return $res["num"];
+  	  }
   	}
   	public function getUserAnswerById(){
   	  if($this->id==0){
@@ -24,6 +42,11 @@
   	    $this->uaDb->where($tmpStr);
   	    $this->uaDb->query();
   	    $res=$this->uaDb->getResultArray();
+  	    $this->userid=$res["userid"];
+  	    $this->surveyid=$res["surveyid"];
+  	    $this->problemid=$res["problemid"];
+  	    $this->isEassy=$res["isEassy"];
+  	    $this->answer=$res["answer"];
   	  }
   	}
   	public function setIdByHand($_id){
