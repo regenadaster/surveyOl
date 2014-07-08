@@ -6,6 +6,7 @@
 <link href="../lib/justified-nav.css" rel="stylesheet" media="screen" />
 <script src="../jquery/jquery.js"></script>
 <script src="../bootstrap/dist/js/bootstrap.js"></script>
+<script src="../lib/common.js"></script>
 <script src="../lib/user.js"></script>
 <title>Insert title here</title>
 <style type="text/css">
@@ -54,8 +55,8 @@
 		  </div>
 		</div>
 		<div class="row col-md-12" style="height:20px"></div>
-		<div class="row">
-        <table class="table table-bordered">
+		<div class="row" id="userDataContainer">
+         <table class="table table-bordered" id="userTable">
           <thead>
             <tr>
               <th>
@@ -76,31 +77,7 @@
             </tr>
          
           </thead>
-           <tr>
-             <td>
-               biaoti
-             </td>
-             <td>
-               2014/12/12
-             </td>
-             <td>
-    		   <select class="selectpicker btn btn-default  btn-sm">
-    			 <option>
-    			       发布
-    			 </option>
-    			 <option>
-    			       未发布
-    			 </option>
-    			</select>
-             </td>
-              <td>
-                0
-             </td>
-             <td>
-               asdfl
-             </td>                       
-           </tr>
-        </table>
+          </table>
         </div>
 		</div>
 	</div>
