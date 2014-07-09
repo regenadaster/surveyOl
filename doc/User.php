@@ -24,7 +24,7 @@
 			<ul class="nav navbar-nav">
 				<a class="navbar-brand" href="#">System</a>
 				<li class="active">
-					<a href="#">Home</a>
+					<a href="http://127.0.0.1:8081/surveyOI/doc/home.php">Home</a>
 				</li>
 				<li>
 				<a href="#questionnaire">
@@ -49,7 +49,7 @@
 		<div class="col-md-10 col-md-offset-1">
 		<div class="row" id="addAndSearch">
 		  <div class="col-md-2">
-		  <button type="button" class="btn btn-primary">+新建问卷</button>
+		  <button type="button" class="btn btn-primary" id="createBtn">+新建问卷</button>
 		  </div>
 		  <div class="col-md-2 col-md-offset-8" data-spy="affix" data-offset-top="60" data-offset-bottom="200">我会在这放搜索框
 		  </div>

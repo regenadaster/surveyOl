@@ -7,6 +7,8 @@
   	private $uDb;
   	private $userTable;
   	private $surveys;
+  	private $adminName;
+  	private $adPasswd;
   	public function __construct($_name="",$_passwd=""){
   	  $this->setName($_name);
   	  $this->setPasswd($_passwd);
@@ -14,12 +16,68 @@
   	  $this->id=0;
   	  $this->userTable="user";
   	  $this->surveys=array();
+  	  $this->adminName="admin";
+  	  $this->adPasswd="admin";
   	}
   	public function putSurvey($_survey){
   	  $this->surveys[]=$_survey;
   	}
   	public function getSurveys(){
   	  return $this->surveys;
+  	}
+  	public function putSurveysByDbResult($res){
+  	  foreach ($res as $arr){
+  		$tmpSurvey=new survey();
+  		$tmpSurvey->setIdByHand($arr["id"]);
+  		$tmpSurvey->getSurveyById();
+  		$tmpSurvey->AddProblemById();
+  		$tmpSurvey->setUser($this->name, $this->passwd);
+  		$this->putSurvey($tmpSurvey);
+  	  }
+  	}
+  	public function putSurveysByDbResultId($res){
+  	  foreach ($res as $arr){
+  		$tmpSurvey=new survey();
+  		$tmpSurvey->setIdByHand($arr["id"]);
+  		$tmpSurvey->getSurveyById();
+  		$tmpSurvey->AddProblemById();
+  		$tmpSurvey->setUserById($arr["owner"]);
+  		$this->putSurvey($tmpSurvey);
+  	  }
+  	}
+  	public function getLastDaySurveys(){
+  	  $str=getToday();
+  	  $this->uDb->select("survey");
+  	  $this->uDb->where("begin>=\"$str\"");
+   	  $this->uDb->OrderBy("begin",0);
+   	  $this->uDb->query();
+   	  $res=$this->uDb->getResultArray();
+   	  $this->putSurveysByDbResultId($res);
+  	}
+  	public function getLastWeekSurveys(){
+  	  $str=getThisWeekFirstDay();
+  	  $this->uDb->select("survey");
+  	  $this->uDb->where("begin>=\"$str\"");
+  	  $this->uDb->OrderBy("begin",0);
+  	  $this->uDb->query();
+  	  $res=$this->uDb->getResultArray();
+  	  $this->putSurveysByDbResultId($res);
+  	}
+  	public function getLastMonthSurveys(){
+  	  $str=getThisMonthFirstDay();
+  	  $this->uDb->select("survey");
+  	  $this->uDb->where("begin>=\"$str\"");
+  	  $this->uDb->OrderBy("begin",0);
+  	  $this->uDb->query();
+  	  $res=$this->uDb->getResultArray();
+  	  $this->putSurveysByDbResultId($res);
+  	}
+  	public function getAllSurveysByAdmin(){
+  	  $this->uDb->select("survey","id");
+  	  $this->uDb->OrderBy("begin",0);
+  	  $this->uDb->query();
+  	  $res=$this->uDb->getResultArray();
+  	  $this->putSurveysByDbResultId($res);
   	}
   	public function getAllSurveys(){
   	  if($this->id==0){
@@ -28,16 +86,10 @@
   	  $tmpStr="owner=$this->id";
   	  $this->uDb->select("survey","id");
   	  $this->uDb->where($tmpStr);
+  	  $this->uDb->OrderBy("begin",0);
   	  $this->uDb->query();
   	  $res=$this->uDb->getResultArray();
-  	  foreach ($res as $arr){
-  	    $tmpSurvey=new survey();
-  	    $tmpSurvey->setIdByHand($arr["id"]);
-  	    $tmpSurvey->getSurveyById();
-  	    $tmpSurvey->AddProblemById();
-  	    $tmpSurvey->setUser($this->name, $this->passwd);
-  	    $this->putSurvey($tmpSurvey);
-  	  }
+      $this->putSurveysByDbResult($res);
   	}
   	public function setName($_name){
   	  $this->name=$_name;
@@ -131,6 +183,19 @@
   	  else{
   	    header("Location: http://127.0.0.1:8081/surveyOI/doc/login.html");
   	  }
+  	}
+  	public function checkAdmin(){
+      $str="name=\"$this->name\" AND passwd=\"$this->passwd\"";
+      $this->uDb->select($this->userTable);
+      $this->uDb->where($str);
+      $this->uDb->query();
+      $res=$this->uDb->getResultArray();
+      if($res["name"]=="admin"&&$res["passwd"]=="admin"){
+        return true;
+      }
+      else{
+        return false;
+      }
   	}
   	public function regUser(){
   	  if(!$this->isValidate()) return false;

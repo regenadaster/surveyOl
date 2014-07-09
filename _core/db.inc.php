@@ -44,6 +44,15 @@
   	  	return $tmp;
   	  }
   	}
+  	public function OrderBy($str,$asc=1){
+  	  $this->sqlsen.=" order by `".$str."` ";
+  	  if($asc==1){
+  	    $this->sqlsen.=" asc";
+  	  }
+  	  else{
+  	    $this->sqlsen.=" desc";
+  	  }
+  	}
   	public function query(){
   	  if(";"!=getLastChar($this->sqlsen)){
   	  	$this->sqlsen.=";";

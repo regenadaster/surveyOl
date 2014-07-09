@@ -130,9 +130,11 @@
           <button type="button" class="btn btn-default" id="judge">判断题</button>
           <button type="button" class="btn btn-default" id="eassyQuestion">问答题</button>
           <button type="button" class="btn btn-default" id="publish">发布</button>
+          <button type="button" class="btn btn-default" id="saveSurvey">保存</button>
         </div>
       </div>
       <div class="row hideStyle" style="height:120px"></div>
+      <div class="row col-md-10 col-md-offset-1" id="addBorder">
       <div class="row col-md-8 col-md-offset-2" id="titleRow">
         <div class="col-md-3">
          <span><h5 id="title">新问卷标题</h5></span>
@@ -149,6 +151,7 @@
         <div class="col-md-offset-2">
           <button type="button" class="btn btn-primary" id="createBtn">创建问卷</button>
         </div>
+      </div>
       </div>
       </div>
       <div class="row">

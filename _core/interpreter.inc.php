@@ -6,9 +6,11 @@
     private $_problems;
     private $surveyId;
     private $surveyTailUrl;
-    public function __construct($_data){
+    private $save;
+    public function __construct($_data,$save){
       $this->_dataSet=$_data;
       $this->putSurvey();
+      $this->save=$save;
     }
     public function echoUrl(){
       echo $this->_survey->getFileUrl();
@@ -17,7 +19,7 @@
       $descript=$this->_dataSet['descript'];
       $subject=$this->_dataSet["descript"];
       $title=$this->_dataSet['title'];
-      $isRelease=0;
+      $isRelease=($this->save==1)?0:1;
       $begin=date('Y-m-d H:i:s',time());
       $close=date('Y-m-d H:i:s',strtotime("next year"));
       $owner=getVal("userName");

@@ -13,4 +13,5 @@
   defined("PickerCss")||define("PickerCss","../pickerSrc/jquery.fs.picker.css");
   defined("PickerJs")||define("PickerJs","../pickerSrc/jquery.fs.picker.js");
   defined("DataCollectionJs")||define("DataCollectionJs","../lib/dataCollection.js");
+  $utf8_string=mb_convert_encoding($gb_string, UTF-8,GB2312);
   ?>

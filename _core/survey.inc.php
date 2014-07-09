@@ -39,6 +39,11 @@
   	  $this->surveyUser->setPasswd($_passwd);
   	  $this->owner=$this->surveyUser->getId();
   	}
+  	public function setUserById($id){
+  	  $this->surveyUser->setIdbyHand($id);
+  	  $this->surveyUser->getNameAndPasswdById();
+  	  $this->owner=$id;
+  	}
   	public function setIdByHand($_id){
   	  $this->id=$_id;
   	}

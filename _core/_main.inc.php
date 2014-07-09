@@ -47,18 +47,41 @@
   function setVal($name,$val){
     $_SESSION[$name]=$val;
   }
+  function goHome(){
+    header("Location: http://127.0.0.1:8081/surveyOI/doc/home.php");
+  }
+  function goAdminLogin(){
+  	header("Location: http://127.0.0.1:8081/surveyOI/doc/adMinLogin.php");
+  }
+  function goAdmin(){
+    header("Location: http://127.0.0.1:8081/surveyOI/doc/Administrator.php");
+  }
   function getQNum($_str){
     $oPos=strpos($_str,'o');
     $qPos=strpos($_str,'q');
-    return substr($_str,1,$oPos-1);
+    return substr($_str,1,$oPos-$qPos-1);
   }
   function getOptNum($_str){
-    $oPos=strpos($_str);
-    return substr($_str,$oPos+1,$oPos+1);
+    $oPos=strpos($_str,'o');
+    $len=strlen($_str);
+    return substr($_str,$oPos+1,$len-$oPos-1);
   }
   function myUlrmd5($str){
   	$str.="survey";
   	$newStr=md5($str);
     return substr($newStr,0,7);
+  }
+  function getToday(){
+  	return date('Y-m-d',time());
+  }
+  function getThisMonthFirstDay(){
+    $str=date('Y-m',time());
+    return $str."-1";
+  }
+  function getThisWeekFirstDay(){
+  	$date=new DateTime();
+  	$date->modify('this week');
+  	$firstday=$date->format('Y-m-d');
+  	return $firstday;
   }
   ?>
