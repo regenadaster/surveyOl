@@ -94,6 +94,9 @@
   	public function getProblems(){
   	  return $this->problems;
   	}
+  	public function getProblemsCount(){
+  	  return count($this->problems);
+  	}
   	public function setRelease($isre){
   	  $this->isRelease=$isre;
   	}

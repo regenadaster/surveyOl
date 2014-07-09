@@ -48,6 +48,7 @@
   //$dataSet=$tmpUserSurvey->getDataSet();
   //echo json_encode($dataSet);
   //$dataSet=$_POST["dataSet"];
+  
   $dataSet=array();
   $dataSet["answer"]=array();
   $dataSet["surveyId"]="7bfb3a7";
@@ -75,4 +76,8 @@
   	$tmpAnswer->createAnswer();
   }
   
+     
+    // $collecter=new collectAnswer("7bfb3a7");
+    // $dataSet=$collecter->getAnswersArr();
+   //  echo json_encode($dataSet);
   ?>

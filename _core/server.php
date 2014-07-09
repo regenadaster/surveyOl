@@ -128,5 +128,11 @@ mark;
    	 }
    	 //echo ($dataSet["answer"]);
    }
+   if($_GET["query"]=="Statics"){
+   	 $url=$_GET["url"];
+     $collecter=new collectAnswer($url);
+     $dataSet=$collecter->getAnswersArr();
+     echo json_encode($dataSet);
+   }
   ?>
   

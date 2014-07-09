@@ -21,6 +21,9 @@
   	public function setIdByHand($_id){
   	  $this->id=$_id;
   	}
+  	public function getOptionsCount(){
+  	  return count($this->options);
+  	}
   	public function AddOptionById(){
   	  if($this->id==0){
   	    return false;
