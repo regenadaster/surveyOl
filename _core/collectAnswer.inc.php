@@ -1,11 +1,13 @@
 <?php
   require_once '../_core/_main.inc.php';
   class collectAnswer{
+  	private $dataSet;
   	private $answersArr;
   	private $cDb;
   	private $url;
   	private $_survey;
   	public function __construct($url){
+  	  $this->dataSet=array();
   	  $this->answersArr=array();
   	  $this->cDb=db::getInstance(MYSQLHOST,MYSQLUSER,MYSQLPS);
   	  $this->url=$url;
@@ -24,11 +26,17 @@
   	  $this->_survey=$tmpSurvey;
   	}
   	public function packAnswerData(){
+  	  $this->dataSet["title"]=$this->_survey->getTitle();
+  	  $this->dataSet["descript"]=$this->_survey->getDescript();
+  	  $this->dataSet["subject"]=$this->_survey->getSubject();
+  	  $this->dataSet["begin"]=$this->_survey->getBegin();
+  	  $this->dataSet["end"]=$this->_survey->getClose();
   	  $problems=$this->_survey->getProblems();
   	  for($i=0;$i<count($problems);$i++){
   	  	$problemArr=array();
   	    $tmpProblem=$problems[$i];
   	    $_count=$tmpProblem->getOptionsCount();
+  	    $problemArr["descript"]=$tmpProblem->getDescript();
   	    $problemArr["optNum"]=$_count;
   	    $problemArr["optCount"]=array();
   	    for($j=0;$j<$_count;$j++){
@@ -39,9 +47,10 @@
   	    }
   	    $this->answersArr[]=$problemArr;
   	  }
+  	  $this->dataSet["answer"]=$this->answersArr;
   	}
     public function getAnswersArr(){
-      return $this->answersArr;
+      return $this->dataSet;
     }
   	public function getOptSelectNum($sid,$pid,$optNum){
   	  $str="surveyid=$sid and problemid=$pid and answer=$optNum";

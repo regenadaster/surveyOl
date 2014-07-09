@@ -211,6 +211,9 @@
   	public function setClose($_close){
   	  $this->close=$_close;
   	}
+  	public function getClose(){
+      return $this->close;
+  	}
   	public function __destruct(){
   	}
   	/***

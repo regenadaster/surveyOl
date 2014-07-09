@@ -128,7 +128,7 @@ mark;
    	 }
    	 //echo ($dataSet["answer"]);
    }
-   if($_GET["query"]=="Statics"){
+   if($_GET["query"]=="statics"){
    	 $url=$_GET["url"];
      $collecter=new collectAnswer($url);
      $dataSet=$collecter->getAnswersArr();
