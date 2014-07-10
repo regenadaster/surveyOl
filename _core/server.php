@@ -73,6 +73,17 @@ mark;
        goAdminLogin();
      }
    }
+   if($_GET["query"]=="remove"){
+   	 $url=$_POST['url'];
+   	 $tmpUrl=new surveyUrl();
+   	 if(!empty($url)){
+   	   $tmpUrl->setUrl($url);
+   	   $tmpUrl->setSidFromDb();
+   	   $surveyId=$tmpUrl->getSurveyId();
+   	   $dc=new datachange($surveyId);
+   	   $dc->removeSurveyAndChildren();
+   	 }
+   }
    if($_GET["query"]=="adminData"){
    	 if($_GET["time"]=="day"){
    	   $tmpUserSurvey=new userSurvey("admin","admin",1);
@@ -89,9 +100,24 @@ mark;
    	 $dataSet=$tmpUserSurvey->getDataSet();
    	 echo json_encode($dataSet);
    }
+   if($_GET["query"]=="searchAdmin"){
+   	 $search=$_POST["data"];
+   	 $searchData=new userSurvey();
+   	 $searchData->setText($search);
+   	 $searchData->searchPack(6);
+   	 $dataSet=$searchData->getDataSet();
+   	 echo json_encode($dataSet);   	
+   }
+   if($_GET["query"]=="search"){
+   	 $search=$_POST["data"];
+   	 $searchData=new userSurvey();
+   	 $searchData->setText($search);
+   	 $searchData->searchPack(5);
+   	 $dataSet=$searchData->getDataSet();
+   	 echo json_encode($dataSet);
+   }
    if($_GET["query"]=="survey"){
      $dataSet=$_POST["dataSet"];
-     //echo $_SESSION["password"];
      $save=0;
      if($_GET["save"]=="1") $save=1;
      $_interpreter=new interpreter($dataSet,(int)$save);

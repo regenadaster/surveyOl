@@ -47,6 +47,12 @@
   	    return $this->id;
   	  }
   	}
+  	public function deleteOptionById($_id){
+  	  $str="id=$_id";
+  	  $this->opDb->deleteData("poption");
+  	  $this->opDb->where($str);
+  	  $this->opDb->query();
+  	}
   	public function setDescript($_des){
   	  $this->descipt=$_des;
   	}

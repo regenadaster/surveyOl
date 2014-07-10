@@ -91,6 +91,15 @@
   	  $res=$this->uDb->getResultArray();
       $this->putSurveysByDbResult($res);
   	}
+  	public function getAllSurveysByTitle($_title,$userId){
+  	  $tmpStr="title like \"%$_title%\"";
+  	  if(!empty($userId)) $tmpStr.=" and owner=$userId";
+  	  $this->uDb->select("survey");
+  	  $this->uDb->where($tmpStr);
+  	  $this->uDb->query();
+  	  $res=$this->uDb->getResultArray();
+  	  $this->putSurveysByDbResultId($res);
+  	}
   	public function setName($_name){
   	  $this->name=$_name;
   	}
@@ -181,7 +190,7 @@
   			*/
   	  }
   	  else{
-  	    header("Location: http://127.0.0.1:8081/surveyOI/doc/login.html");
+  	    header("Location: http://127.0.0.1:8081/surveyOI/doc/login.php");
   	  }
   	}
   	public function checkAdmin(){

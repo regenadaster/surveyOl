@@ -15,14 +15,25 @@
   	  $this->_survey=new survey();
   	  $this->_surveyUrl=new surveyUrl();
   	  $this->getSurveyId();
-  	  $this->setSurvey();
+  	  if(!$this->setSurvey()){
+  	  	return;
+  	  }
   	  $this->createDataSet();
   	}
   	public function setSurvey(){
   	  $this->_survey->setIdByHand($this->getSurveyId());
   	  $this->_survey->getSurveyById();
+  	  if(!$this->_survey->getRelease()){
+  	  	return false;
+  	  }
+  	  $now=date('Y-m-d H:i:s',time());
+  	  $closeTime=$this->_survey->getClose();
+  	  if(strtotime($now)>strtotime($closeTime)){
+  	  	return false;
+  	  }
   	  $this->_survey->AddProblemById();
   	  $this->_survey->sortProblems();
+  	  return true;
   	}
   	public function getSurveyId(){
   	  $this->_surveyUrl->setUrl($this->getFileName());

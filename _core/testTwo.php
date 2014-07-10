@@ -1,4 +1,5 @@
 <?php
+  //this file is for unit test and just for unit test;
   require_once '../_core/_main.inc.php';
   //$remoteuser=new userAnswer();
   //$remoteuser->setSurveyId(2);
@@ -77,7 +78,24 @@
   }
   */
      
-     $collecter=new collectAnswer("7bfb3a7");
-     $dataSet=$collecter->getAnswersArr();
-     echo json_encode($dataSet);
+     //$collecter=new collectAnswer("7bfb3a7");
+    // $dataSet=$collecter->getAnswersArr();
+    // echo json_encode($dataSet);
+   //	 $tmpUserSurvey=new userSurvey("admin","admin",1);
+    //     $dataSet=$tmpUserSurvey->getDataSet();
+   //	 echo json_encode($dataSet);
+   //   	   $tmpUrl=new surveyUrl();
+    //  	   $tmpUrl->setUrl("7bfb3a7");
+   //	   $tmpUrl->setSidFromDb();
+   //	   $surveyId=$tmpUrl->getSurveyId();
+   //	   $dc=new datachange($surveyId);
+   //	   $dc->removeSurveyAndChildren();
+         //setVal("userName","lgt");
+         //setVal("password","5363513l");
+      	 //$search=$_POST["data"];
+   	 $searchData=new userSurvey();
+   	 $searchData->setText("hello");
+   	 $searchData->searchPack(6);
+   	 $dataSet=$searchData->getDataSet();
+   	 echo json_encode($dataSet);
   ?>

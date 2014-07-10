@@ -39,11 +39,15 @@
   	    $problemArr["descript"]=$tmpProblem->getDescript();
   	    $problemArr["optNum"]=$_count;
   	    $problemArr["optCount"]=array();
-  	    for($j=0;$j<$_count;$j++){
+  	    $problemArr["optDescript"]=array();
+  	    $opts=$tmpProblem->getOptions();
+  	    for($j=0;$j<count($opts);$j++){
+  	      $opt=$opts[$j];
   	      $sid=$this->_survey->getSid();
   	      $pid=$tmpProblem->getId();
   	      $optnum=$this->getOptSelectNum($sid,$i+1,$j+1);
   	      $problemArr["optCount"][]=$optnum;
+  	      $problemArr["optDescript"][]=$opt->getDescript();
   	    }
   	    $this->answersArr[]=$problemArr;
   	  }

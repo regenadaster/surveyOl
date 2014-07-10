@@ -21,7 +21,7 @@
 			<ul class="nav navbar-nav">
 				<a class="navbar-brand" href="#">System</a>
 				<li class="active">
-					<a href="#">Home</a>
+				  <a href="http://127.0.0.1:8081/surveyOI/doc/home.php">Home</a>
 				</li>
 				<li>
 				<a href="#questionnaire">
@@ -56,7 +56,7 @@
 		  <div class="form-group">
 		    <label for="password" class="control-label col-md-3 col-md-offset-1">√‹¬Î:</label>
 		    <div class="col-md-4">
-		      <input type="text" class="form-control" name="password" placeholder="password">
+		      <input type="password" class="form-control" name="password" placeholder="password">
 		    </div>
 		  </div>
 		  <div class="row" style="height:30px;"></div>

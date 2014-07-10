@@ -1,13 +1,26 @@
-<?php session_start();?>
+<?php session_start()?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=gb2312">
 <link href="../bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" media="screen" />
 <script src="../jquery/jquery.js"></script>
-<script src="../lib/home.js"></script>
-<title>Insert title here</title>
+<script>
+  GoHome=function(){
+	window.location="http://127.0.0.1:8081/surveyOI/doc/home.php";
+  }
+  binFun=function(){
+    $("#goHome").click(GoHome);
+  }
+  $(document).ready(binFun);
 
+</script>
+  <style type="text/css">
+  body{
+	background-color:#eee;
+  }
+  </style>
+<title>Insert title here</title>
 </head>
 <body>
 	<div class="container">
@@ -35,29 +48,10 @@
 				</li>
 			</ul>
 		</div>
-			<div class="jumbotron">
-			    </br>
-			    <div class="row">
-			      <div class="col-lg-6 col-lg-offset-1">
-			        <h1>NBD问卷调查</h1>
-			      </div>
-			    </div>
-			        </br>
-				<div class="row">
-				 <div class="col-lg-6 col-lg-offset-1">
-					<div class="input-group">
-						<input type="text" class="form-control" />
-						<span class="input-group-btn">
-						<button class="btn btn-default" type="button">搜索</button>
-						</span>
-					</div>
-				  </div>
-				 </div>
-			</div>
-		<div class="row">
-			
+		<div style="text-align:center; background:url('../lib/back.jpg'); width:100%; height:400px; padding:100px 100px;">
+			<h2>感谢您参与本次调查!</h2>
+			<button class="btn btn-default" id="goHome">返回首页</button>
 		</div>
 	</div>
-
 </body>
 </html>

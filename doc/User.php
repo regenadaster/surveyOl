@@ -1,3 +1,4 @@
+<?php session_start()?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -15,6 +16,12 @@
   }
   .addAndSearch{
     margin-top:-10px;
+  }
+  .gspan{
+  	margin-left:20px;
+  }
+  .pagination:hover{
+  	cursor:pointer;
   }
 </style>
 </head>
@@ -39,10 +46,10 @@
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
 				<li>
-				<a href="#login">login</a>
+				<?php if($_SESSION["userName"]!="") echo '<a href="http://127.0.0.1:8081/surveyOI/doc/user.php">'.$_SESSION["userName"].'</a>'; else{ echo '<a href="http://127.0.0.1:8081/surveyOI/doc/login.html">login</a>';}?>
 				</li>
 				<li>
-					<a href="#sign">sign</a>
+					<?php if($_SESSION["userName"]=="") echo '<a href="http://127.0.0.1:8081/surveyOI/doc/register.html">sign</a>';else{ echo '<a href="http://127.0.0.1:8081/surveyOI/_core/server.php?query=logout">logout</a>';} ?>
 				</li>
 			</ul>
 		</div>
@@ -51,7 +58,11 @@
 		  <div class="col-md-2">
 		  <button type="button" class="btn btn-primary" id="createBtn">+新建问卷</button>
 		  </div>
-		  <div class="col-md-2 col-md-offset-8" data-spy="affix" data-offset-top="60" data-offset-bottom="200">我会在这放搜索框
+		  <div class="col-md-2 col-md-offset-11 input-group" data-spy="affix" data-offset-top="60" data-offset-bottom="200">
+		    <input type="text" class="mysearch form-control" placeholder="search" id="searchInput"></input>
+		    <span class="input-group-btn">
+		      <button class="btn btn-default" type="button" id="searchButton">Go!</button>
+		    </span>
 		  </div>
 		</div>
 		<div class="row col-md-12" style="height:20px"></div>
@@ -75,10 +86,28 @@
                                                         操作
               </th>
             </tr>
-         
           </thead>
           </table>
         </div>
+		<div id="mymodal" class="modal" tabindex="-1" role="dialog" aria-hidden="false">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+					<h4>这是删除按钮</h4>
+					</div>
+					<div class="modal-body">
+					     你确定删除这个调查问卷？
+					</div>
+					<input type="hidden" id="datahide" value=""></input>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">放弃</button>
+						<button class="btn btn-primary" id="removeButton">确定</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<ul class="pagination" id="pageul">
+        </ul>
 		</div>
 	</div>
 </body>

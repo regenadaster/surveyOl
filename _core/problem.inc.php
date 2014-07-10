@@ -43,6 +43,12 @@
   	    }
   	  }
   	}
+  	public function deleteProblemsByPid($_pid){
+  	  $str="id=$_pid";
+  	  $this->pDb->deleteData("problem");
+  	  $this->pDb->where($str);
+  	  $this->pDb->query();
+  	}
   	public function setId(){
   	  $this->pDb->select("problem","id");
   	  $this->pDb->where("description=\"$this->descri\" AND surveyid=$this->surveyid");		

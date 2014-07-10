@@ -36,7 +36,7 @@
      $quT["options"][]=$opt_two;
      $questions[]=$quT;
      $dataSet["questions"]=$questions;
-     //$_interpreter=new interpreter($dataSet);
+     //$_interpreter=new interpreter($dataSet,1);
    
     //$mysurvey=new survey();
     //$mysurvey->setIdByHand(105);
@@ -50,7 +50,7 @@
      //$dataSet=$_POST["dataSet"];
      setVal("userName","lgt");
      setVal("password","5363513l");
-     $_interpreter=new interpreter($dataSet);
+     $_interpreter=new interpreter($dataSet,1);
      $_interpreter->echoUrl();
    // $myhtml=new createHtml($dataSet,1);
     //echo "hello";

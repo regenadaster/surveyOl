@@ -44,6 +44,12 @@
   	  $this->surveyUser->getNameAndPasswdById();
   	  $this->owner=$id;
   	}
+  	public function removeSurveyById($_id){
+  	  $str="id=$_id";
+  	  $this->sDb->deleteData("survey");
+  	  $this->sDb->where($str);
+  	  $this->sDb->query();
+  	}
   	public function setIdByHand($_id){
   	  $this->id=$_id;
   	}

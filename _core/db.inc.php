@@ -53,12 +53,15 @@
   	    $this->sqlsen.=" desc";
   	  }
   	}
+  	public function deleteData($table){
+  	  $this->sqlsen.="delete from ".$table;
+  	}
   	public function query(){
   	  if(";"!=getLastChar($this->sqlsen)){
   	  	$this->sqlsen.=";";
   	  }
   	 // echo "   </br>";
-  	  //var_dump($this->sqlsen);
+  	 // var_dump($this->sqlsen);
   	  //echo "</br>";
   	  //var_dump($this->link);
   	  $this->result=mysql_query($this->sqlsen,$this->link);

@@ -19,6 +19,15 @@
   #surveyTable thead{
     background-color:#e7e7e7;
   }
+  .gspan{
+  	margin-left:20px;
+  }
+  #searchgroup{
+    margin-bottom:10px;
+  }
+  .pagination:hover{
+  	cursor:pointer;
+  }
 </style>
 </head>
 <body>
@@ -46,19 +55,14 @@
 				</li>
 			</ul>
 		</div>
-		</br>
-		</br>
-		</br>
-		<div data-spy="affix" datq-offset-top="200">
-		  <button class="btn btn-primary" id="today">今日添加</button>
-		  </br>
-		  <button class="btn btn-default" id="thisWeek">今周添加</button>
-		  </br>
-		  <button class="btn btn-default" id="thisMonth">今月添加</button>
-		  </br>
-		  <button class="btn btn-default" id="all">全部问卷</button>
-		</div>
+
 		<div class="col-md-11 col-md-offset-1">
+		<div class="col-md-2 col-md-offset-9 input-group" id="searchgroup"data-spy="affix" data-offset-top="60" data-offset-bottom="200">
+		    <input type="text" class="mysearch form-control" placeholder="search" id="searchInput"></input>
+		    <span class="input-group-btn">
+		      <button class="btn btn-default" type="button" id="searchButton">Go!</button>
+		    </span>
+		</div>
          <table class="table table-bordered" id="surveyTable">
           <thead>
             <tr>
@@ -66,7 +70,7 @@
                                                       问卷标题
               </th>
               <th>
-                                                        创建时间
+                                                        创建者
               </th>
               <th>
                                                          状态
@@ -83,6 +87,36 @@
           </table>
         
 		</div>
+		<div data-spy="affix" data-offset-top="400px">
+		  <button class="btn btn-primary" id="today">今日添加</button>
+		  </br>
+		  <button class="btn btn-default" id="thisWeek">今周添加</button>
+		  </br>
+		  <button class="btn btn-default" id="thisMonth">今月添加</button>
+		  </br>
+		  <button class="btn btn-default" id="all">全部问卷</button>
+		</div>
+		<div id="mymodal" class="modal" tabindex="-1" role="dialog" aria-hidden="false">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+					<h4>这是删除按钮</h4>
+					</div>
+					<div class="modal-body">
+					     你确定删除这个调查问卷？
+					</div>
+					<input type="hidden" id="datahide" value=""></input>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">放弃</button>
+						<button class="btn btn-primary" id="removeButton">确定</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row col-md-offset-3">
+		  <ul class="pagination" id="pageul">
+          </ul>
+          </div>
 </div>
 </body>
 </html>

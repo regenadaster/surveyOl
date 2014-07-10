@@ -9,15 +9,18 @@
     private $save;
     public function __construct($_data,$save){
       $this->_dataSet=$_data;
-      $this->putSurvey();
       $this->save=$save;
+      $this->putSurvey();
     }
     public function echoUrl(){
+      if($this->save==1){
+      	echo "save";
+      }
       echo $this->_survey->getFileUrl();
     }
     public function putSurvey(){
       $descript=$this->_dataSet['descript'];
-      $subject=$this->_dataSet["descript"];
+      $subject=$this->_dataSet["subject"];
       $title=$this->_dataSet['title'];
       $isRelease=($this->save==1)?0:1;
       $begin=date('Y-m-d H:i:s',time());

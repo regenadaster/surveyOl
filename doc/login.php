@@ -1,3 +1,4 @@
+<?php session_start()?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -32,10 +33,10 @@
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
 				<li>
-				<a href="http://127.0.0.1:8081/surveyOI/doc/login.html">login</a>
+				  <?php if($_SESSION["userName"]!="") echo '<a href="http://127.0.0.1:8081/surveyOI/doc/user.php">'.$_SESSION["userName"].'</a>'; else{ echo '<a href="http://127.0.0.1:8081/surveyOI/doc/login.php">login</a>';}?>
 				</li>
 				<li>
-					<a href="http://127.0.0.1:8081/surveyOI/doc/register.html">sign</a>
+					<?php if($_SESSION["userName"]=="") echo '<a href="http://127.0.0.1:8081/surveyOI/doc/register.html">sign</a>';else{ echo '<a href="http://127.0.0.1:8081/surveyOI/_core/server.php?query=logout">logout</a>';} ?>
 				</li>
 			</ul>
 		</div>
