@@ -24,7 +24,11 @@
   	  $this->_survey->setIdByHand($this->getSurveyId());
   	  $this->_survey->getSurveyById();
   	  if(!$this->_survey->getRelease()){
-  	  	return false;
+  	  	if(getVal("save")=="hello"){
+  	  	}
+  	  	else{
+  	  	  return false;
+  	  	}
   	  }
   	  $now=date('Y-m-d H:i:s',time());
   	  $closeTime=$this->_survey->getClose();
@@ -43,6 +47,7 @@
   	public function createDataSet(){
   	  $this->dataSet["descript"]=$this->_survey->getDescript();
   	  $this->dataSet["title"]=$this->_survey->getTitle();
+  	  $this->dataSet["subject"]=$this->_survey->getSubject();
   	  $tmpPros=$this->_survey->getProblems();
       for($i=0;$i<count($tmpPros);$i++){
         $tmpP=array();

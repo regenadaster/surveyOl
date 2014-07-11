@@ -44,6 +44,20 @@
   	  $this->surveyUser->getNameAndPasswdById();
   	  $this->owner=$id;
   	}
+  	public function setPublishToDb(){
+  	  $tmpstr="isrelease=$this->isRelease";
+  	  $wherestr="id=$this->id";
+  	  $this->sDb->update($this->sTable, $tmpstr);
+  	  $this->sDb->where($wherestr);
+  	  $this->sDb->query();
+  	}
+  	public function setCloseToDb(){
+      $tmpstr="close=\"$this->close\"";
+      $wherestr="id=$this->id";
+      $this->sDb->update($this->sTable, $tmpstr);
+      $this->sDb->where($wherestr);
+      $this->sDb->query();
+  	}
   	public function removeSurveyById($_id){
   	  $str="id=$_id";
   	  $this->sDb->deleteData("survey");
@@ -96,6 +110,24 @@
   	    $this->setSubject($res["subject"]);
   	    return true;
   	  }
+  	}
+  	public function getSurveyByBegin(){
+  	  $this->sDb->select($this->sTable);
+  	  $this->sDb->where("begin=\"$this->begin\"");
+  	  $this->sDb->query();
+  	  $res=$this->sDb->getResultArray();
+  	  if(empty($res)){
+  		return false;
+  	  }
+  	  $this->id=$res['id'];
+  	  $this->setBegin($res["begin"]);
+  	  $this->setClose($res["close"]);
+  	  $this->setDescript($res["descript"]);
+  	  $this->setOwner($res["owner"]);
+  	  $this->setRelease($res["isrelease"]);
+  	  $this->setTitle($res["title"]);
+  	  $this->setSubject($res["subject"]);
+  	  return true;
   	}
   	public function getProblems(){
   	  return $this->problems;
@@ -160,7 +192,7 @@
   	    
   	  }
   	  $this->sDb->select("survey","id");
-  	  $this->sDb->where("title=\"$this->title\" AND owner=$this->owner AND subject=\"$this->subject\"");
+  	  $this->sDb->where("title=\"$this->title\" AND owner=$this->owner AND subject=\"$this->subject\" AND begin=\"$this->begin\"");
   	  $this->sDb->query();
   	  $tmp=$this->sDb->getResultArray();
   	  return $tmp;  	  

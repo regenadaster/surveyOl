@@ -8,10 +8,12 @@
   */
   
      setVal("userName", "lgt");
+     setVal("password","5363513l");
      $optionOne=array();
      $optionTwo=array();
      $dataSet=array();
-     $dataSet["title"]="hasdfaaaasdf";
+     $dataSet["subject"]="hello";
+     $dataSet["title"]="hasdfaaasdfadsafgasdfaasdf";
      $dataSet["descript"]="aaaasaaadfasdf";
      $optionOne["type"]=0;
      $optionTwo["type"]=1;
@@ -23,6 +25,18 @@
      $question["options"]=array();
      $question["options"][]=$optionTwo;
      $question["options"][]=$optionOne;
+     $newQuestion=array();
+     $qu=array();
+     $newQu=array();
+     $newQu["descript"]="asdfasdf";
+     $newQu["type"]=2;
+     $qu["descript"]="hellosdfgsdfg world";
+     $qu["type"]=1;
+     $newQuestion["options"]=array();
+     $newQuestion["options"][]=$qu;
+     $newQuestion["options"][]=$newQu;
+     $newQuestion["descript"]="asdjfkajsd";
+     $questions[]=$newQuestion;
      $questions[]=$question;
      $quT=array();
      $quT["descript"]="hellosdfgsdfg world";
@@ -36,7 +50,7 @@
      $quT["options"][]=$opt_two;
      $questions[]=$quT;
      $dataSet["questions"]=$questions;
-     //$_interpreter=new interpreter($dataSet,1);
+     $_interpreter=new interpreter($dataSet,0);
    
     //$mysurvey=new survey();
     //$mysurvey->setIdByHand(105);

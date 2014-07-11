@@ -44,6 +44,9 @@
   	  	return $tmp;
   	  }
   	}
+  	public function update($table,$set){
+  	 $this->sqlsen.="update $table set $set";
+  	}
   	public function OrderBy($str,$asc=1){
   	  $this->sqlsen.=" order by `".$str."` ";
   	  if($asc==1){
@@ -61,7 +64,7 @@
   	  	$this->sqlsen.=";";
   	  }
   	 // echo "   </br>";
-  	 // var_dump($this->sqlsen);
+  	  //var_dump($this->sqlsen);
   	  //echo "</br>";
   	  //var_dump($this->link);
   	  $this->result=mysql_query($this->sqlsen,$this->link);

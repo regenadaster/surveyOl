@@ -43,11 +43,12 @@
     public function addDataSt($dataSt){
       $this->dataSet[]=$dataSt;
     }
-    public function setDataSt($title,$createTime,$isPublish,$answerNum,$url,$name){
+    public function setDataSt($title,$createTime,$isPublish,$isClose,$answerNum,$url,$name){
       $dataSt=array();
       $dataSt["title"]=$title;
       $dataSt["createTime"]=$createTime;
       $dataSt["isPublish"]=$isPublish;
+      $dataSt["isClose"]=$isClose;
       $dataSt["answerNum"]=$answerNum;
       $dataSt["url"]=$url;
       $dataSt["name"]=$name;
@@ -74,6 +75,14 @@
         $title=$tmpSurvey->getTitle();
         $createTime=$tmpSurvey->getBegin();
         $isPublish=$tmpSurvey->getRelease();
+        $now=date('Y-m-d H:i:s',time());
+        $closeTime=$tmpSurvey->getClose();
+        if(strtotime($now)>strtotime($closeTime)){
+          $isClose=1;
+        }
+        else{
+          $isClose=0;
+        }      
         $tmpUserAnswer=new userAnswer();
         $tmpSurveyId=$tmpSurvey->getSid();
         $tmpUserAnswer->setSurveyId($tmpSurveyId);
@@ -87,7 +96,7 @@
         $tmpUser->setIdbyHand($tmpSurvey->getOwner());
         $tmpUser->getNameAndPasswdById();
         $name=$tmpUser->getName();
-        $this->setDataSt($title, $createTime, $isPublish, $answerNum,$tmpUrl,$name);
+        $this->setDataSt($title, $createTime, $isPublish,$isClose, $answerNum,$tmpUrl,$name);
       }
     }
   }

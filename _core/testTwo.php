@@ -77,7 +77,7 @@
   	$tmpAnswer->createAnswer();
   }
   */
-     
+    
      //$collecter=new collectAnswer("7bfb3a7");
     // $dataSet=$collecter->getAnswersArr();
     // echo json_encode($dataSet);
@@ -93,9 +93,12 @@
          //setVal("userName","lgt");
          //setVal("password","5363513l");
       	 //$search=$_POST["data"];
-   	 $searchData=new userSurvey();
-   	 $searchData->setText("hello");
-   	 $searchData->searchPack(6);
-   	 $dataSet=$searchData->getDataSet();
-   	 echo json_encode($dataSet);
+   	 //$searchData=new userSurvey();
+   	 //$searchData->setText("hello");
+   	// $searchData->searchPack(6);
+   	 //$dataSet=$searchData->getDataSet();
+   	// echo json_encode($dataSet);
+   	$myPackData=new packData("d64156c.php");
+   	$dataSet=$myPackData->getDataSet();
+   	var_dump($dataSet);
   ?>

@@ -55,12 +55,10 @@
 			<ul class="nav navbar-nav">
 				<a class="navbar-brand" href="#">System</a>
 				<li class="active">
-					<a href="#">Home</a>
+					<a href="http://127.0.0.1:8081/surveyOI/doc/home.php">Home</a>
 				</li>
 				<li>
-				<a href="#questionnaire">
-					Questionnaire
-				</a>
+                  <?php if($_SESSION["userName"]=="") echo '<a id="questionnaire" href="#">QuestionNaire</a>'; else{ echo '<a id="questionnaire" href="http://127.0.0.1:8081/surveyOI/doc/newCreateSurvey.php">QuestionNaire</a>';}?>
 				</li>
 				<li>
 				<a href="#about">

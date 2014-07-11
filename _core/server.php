@@ -28,8 +28,7 @@
  	if($password!=$password2){
  		$str=<<<mark
   		    <script language="javascript"type="text/javascript">
-  			alert("密码不一样，Button应该点不动才对")
-			window.location.href="http://127.0.0.1:8081/surveyOI/doc/register.html";
+			window.location.href="http://127.0.0.1:8081/surveyOI/doc/register.php";
   			</script>
 mark;
  		echo  $str;
@@ -40,10 +39,11 @@ mark;
  	@$myuser=new user($username,$password);
  	if(@$myuser->regUser()){
  	  @$myuser->createUser();
+ 	  setVal("userName", $_POST["user"]);
+ 	  setVal("password", $_POST["password"]);
  	  $str=<<<mark
   		    <script language="javascript"type="text/javascript">
-  			alert("注册成功，登陆去吧！")
-			window.location.href="http://127.0.0.1:8081/surveyOI/doc/login.html";
+			window.location.href="http://127.0.0.1:8081/surveyOI/doc/home.php";
   			</script>
 mark;
  	  echo  $str;
@@ -52,7 +52,7 @@ mark;
  		$str=<<<mark
   		    <script language="javascript"type="text/javascript">
   			alert("重新输入")
-			window.location.href="http://127.0.0.1:8081/surveyOI/doc/register.html";
+			window.location.href="http://127.0.0.1:8081/surveyOI/doc/register.php";
   			</script>
 mark;
  		echo  $str;
@@ -159,6 +159,33 @@ mark;
      $collecter=new collectAnswer($url);
      $dataSet=$collecter->getAnswersArr();
      echo json_encode($dataSet);
+   }
+   if($_GET["query"]=="getBlocks"){
+   	 $url=$_POST["surveyurl"];
+   	 $url.=".php";
+   	 $myPackData=new packData($url);
+   	 $dataSet=$myPackData->getDataSet();
+   	 setVal("save","hello");
+   	 echo json_encode($dataSet);
+   	 SetVal("save","world");
+   }
+   if($_GET["query"]=="set"){
+     $setval=$_POST["set"];
+     $begin=$_POST["begin"];
+   	 $tmps=new survey();
+   	 $tmps->setBegin($begin);
+   	 $tmps->getSurveyByBegin();
+   	 $now=date('Y-m-d H:i:s',time());
+   	 if(((int)$setval)==2) {
+   	   $tmps->setClose($now);
+   	   $tmps->setCloseToDb();
+   	   echo "Has Closed success,Thank You!";
+   	 }
+   	 if(((int)$setval)==1){
+   	   $tmps->setRelease(1);
+   	   $tmps->setPublishToDb();
+   	   echo "Has Publish success,Thank You!";
+   	 }
    }
   ?>
   

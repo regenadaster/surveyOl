@@ -89,7 +89,7 @@
 					<a href="http://127.0.0.1:8081/surveyOI/doc/home.php">Home</a>
 				</li>
 				<li>
-				<a href="http://127.0.0.1:8081/surveyOI/doc/createSurvey.php">
+				<a href="#questionnaire">
 					Questionnaire
 				</a>
 				</li>
@@ -104,7 +104,7 @@
 				<?php if($_SESSION["userName"]!="") echo '<a href="http://127.0.0.1:8081/surveyOI/doc/user.php">'.$_SESSION["userName"].'</a>'; else{ echo '<a href="http://127.0.0.1:8081/surveyOI/doc/login.php">login</a>';}?>
 				</li>
 				<li>
-					<a href="http://127.0.0.1:8081/surveyOI/doc/register.html"><?php if($_SESSION["userName"]=="") echo "sign"; ?></a>
+					<?php if($_SESSION["userName"]=="") echo '<a href="http://127.0.0.1:8081/surveyOI/doc/register.php">sign</a>';else{ echo '<a href="http://127.0.0.1:8081/surveyOI/_core/server.php?query=logout">logout</a>';} ?>
 				</li>
 			</ul>
 		</div>
