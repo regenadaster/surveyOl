@@ -25,24 +25,31 @@
   	public function getSurveys(){
   	  return $this->surveys;
   	}
-  	public function putSurveysByDbResult($res){
-  	  foreach ($res as $arr){
-  		$tmpSurvey=new survey();
-  		$tmpSurvey->setIdByHand($arr["id"]);
-  		$tmpSurvey->getSurveyById();
-  		$tmpSurvey->AddProblemById();
-  		$tmpSurvey->setUser($this->name, $this->passwd);
-  		$this->putSurvey($tmpSurvey);
+  	public function putSurveyBySid($id,$setUserById){
+  	  $tmpSurvey=new survey();
+  	  $tmpSurvey->setIdByHand($id);
+  	  $tmpSurvey->getSurveyById();
+  	  $tmpSurvey->AddProblemById();
+  	  if($setUserById===0) $tmpSurvey->setUser($this->name, $this->passwd);
+  	  else{
+  	  	$tmpSurvey->setUserById($setUserById);
   	  }
+  	  $this->putSurvey($tmpSurvey);  	  
   	}
-  	public function putSurveysByDbResultId($res){
-  	  foreach ($res as $arr){
-  		$tmpSurvey=new survey();
-  		$tmpSurvey->setIdByHand($arr["id"]);
-  		$tmpSurvey->getSurveyById();
-  		$tmpSurvey->AddProblemById();
-  		$tmpSurvey->setUserById($arr["owner"]);
-  		$this->putSurvey($tmpSurvey);
+  	public function putSurveysByDbResult($res,$setUserWithId=0){
+  	  if(is_two_dim_array($res)){
+  	    foreach ($res as $arr){
+  	      if($setUserWithId==0) $this->putSurveyBySid($arr['id'],0);
+  	      else{
+  	      	$this->putSurveyBySid($arr['id'], $arr["owner"]);
+  	      }
+  	    }
+  	  }
+  	  else{
+  	    if($setUserWithId==0) $this->putSurveyBySid($res['id'],0);
+  	    else{
+  	      $this->putSurveyBySid($res['id'], $res["owner"]);
+  	    }
   	  }
   	}
   	public function getLastDaySurveys(){
@@ -52,7 +59,7 @@
    	  $this->uDb->OrderBy("begin",0);
    	  $this->uDb->query();
    	  $res=$this->uDb->getResultArray();
-   	  $this->putSurveysByDbResultId($res);
+   	  $this->putSurveysByDbResult($res,1);
   	}
   	public function getLastWeekSurveys(){
   	  $str=getThisWeekFirstDay();
@@ -61,7 +68,7 @@
   	  $this->uDb->OrderBy("begin",0);
   	  $this->uDb->query();
   	  $res=$this->uDb->getResultArray();
-  	  $this->putSurveysByDbResultId($res);
+  	  $this->putSurveysByDbResult($res,1);
   	}
   	public function getLastMonthSurveys(){
   	  $str=getThisMonthFirstDay();
@@ -70,14 +77,14 @@
   	  $this->uDb->OrderBy("begin",0);
   	  $this->uDb->query();
   	  $res=$this->uDb->getResultArray();
-  	  $this->putSurveysByDbResultId($res);
+  	  $this->putSurveysByDbResult($res,1);
   	}
   	public function getAllSurveysByAdmin(){
   	  $this->uDb->select("survey","id");
   	  $this->uDb->OrderBy("begin",0);
   	  $this->uDb->query();
   	  $res=$this->uDb->getResultArray();
-  	  $this->putSurveysByDbResultId($res);
+  	  $this->putSurveysByDbResult($res,1);
   	}
   	public function getAllSurveys(){
   	  if($this->id==0){
@@ -98,7 +105,9 @@
   	  $this->uDb->where($tmpStr);
   	  $this->uDb->query();
   	  $res=$this->uDb->getResultArray();
-  	  $this->putSurveysByDbResultId($res);
+  	  //var_dump($res);
+  	  //echo "</br>";
+  	  $this->putSurveysByDbResult($res);
   	}
   	public function setName($_name){
   	  $this->name=$_name;

@@ -16,7 +16,9 @@
         }
         else{
           $this->remoteuser=new user();
-          $this->remoteuser->setName(getVal("userName"),getVal("password"));
+         // echo "go here;";
+          //echo "</br>";
+          //$this->remoteuser->setName(getVal("userName"),getVal("password"));
           return;          
         }
       }
@@ -68,7 +70,7 @@
       if($this->type==3) $this->remoteuser->getLastMonthSurveys();
       if($this->type==4) $this->remoteuser->getAllSurveysByAdmin();
       if($this->type==5) $this->remoteuser->getAllSurveysByTitle($this->text,$this->remoteuser->getId());
-      if($this->type==6) $this->remoteuser->getAllSurveysByTitle($this->text);
+      if($this->type==6) { $this->remoteuser->getAllSurveysByTitle($this->text);}
       $tmpSurveys=$this->remoteuser->getSurveys();
       for($i=0;$i<count($tmpSurveys);$i++){
       	$tmpSurvey=$tmpSurveys[$i];

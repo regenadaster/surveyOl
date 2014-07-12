@@ -112,6 +112,8 @@ mark;
    	 $search=$_POST["data"];
    	 $searchData=new userSurvey();
    	 $searchData->setText($search);
+   	 $tmpUser=new user(getVal("userName"),getVal("password"));
+   	 $searchData->setUser($tmpUser);
    	 $searchData->searchPack(5);
    	 $dataSet=$searchData->getDataSet();
    	 echo json_encode($dataSet);

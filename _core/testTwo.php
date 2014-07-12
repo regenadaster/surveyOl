@@ -98,7 +98,22 @@
    	// $searchData->searchPack(6);
    	 //$dataSet=$searchData->getDataSet();
    	// echo json_encode($dataSet);
-   	$myPackData=new packData("d64156c.php");
-   	$dataSet=$myPackData->getDataSet();
-   	var_dump($dataSet);
+   	//$myPackData=new packData("d64156c.php");
+   	//$dataSet=$myPackData->getDataSet();
+   	//var_dump($dataSet);
+   	/*
+   	setVal("userName",'xp');
+   	setVal("password",'111');
+    $search="hello";
+    $searchData=new userSurvey();
+    $searchData->setText($search);
+    $tmpUser=new user(getVal("userName"),getVal("password"));
+    $searchData->setUser($tmpUser);
+    $searchData->searchPack(5);
+    $dataSet=$searchData->getDataSet();
+    echo json_encode($dataSet);
+    */
+    $tmpUserSurvey=new userSurvey("admin","admin",1);
+    $dataSet=$tmpUserSurvey->getDataSet();
+    echo json_encode($dataSet);
   ?>

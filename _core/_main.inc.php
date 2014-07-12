@@ -20,10 +20,10 @@
   	return false;
   }
   function is_two_dim_array($arr){
-  	$d=1;
+  	$d=false;
   	foreach($arr as $val){
   	  if(is_array($val)){
-  	  	$d=2;
+  	  	$d=true;
   	  	break;
   	  }
   	}
