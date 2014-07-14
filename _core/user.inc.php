@@ -103,6 +103,7 @@
   	  if(!empty($userId)) $tmpStr.=" and owner=$userId";
   	  $this->uDb->select("survey");
   	  $this->uDb->where($tmpStr);
+  	  $this->uDb->OrderBy("begin",0);
   	  $this->uDb->query();
   	  $res=$this->uDb->getResultArray();
   	  //var_dump($res);
