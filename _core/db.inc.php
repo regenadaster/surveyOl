@@ -32,17 +32,15 @@
   	public function getResultNumber(){
   	  return $this->mysql_num_rows();
   	}
-  	public function getResultArray($type=MYSQL_ASSOC){
+  	public function getResultArray($dim=0,$type=MYSQL_ASSOC){
   	  $tmp=array();
   	  while($row = mysql_fetch_array($this->result,$type)){
   	  	$tmp[]=$row;
   	  }
-  	  if(count($tmp)===1){
-  	  	return $tmp[0];
+  	  if(count($tmp)==1&&$dim==0){
+  	    return $tmp[0];
   	  }
-  	  else{
-  	  	return $tmp;
-  	  }
+  	  return $tmp;
   	}
   	public function update($table,$set){
   	 $this->sqlsen.="update $table set $set";

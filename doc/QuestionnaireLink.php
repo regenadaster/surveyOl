@@ -11,6 +11,9 @@
   body{
 	background-color:#eee;
   }
+  .nav-justified li{
+  	color:#428bca;  	
+  }
   #urlContainer{
     background-color:#fff;
   }

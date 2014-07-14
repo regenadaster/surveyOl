@@ -75,7 +75,7 @@
   	  	$this->sDb->select("problem");
   	  	$this->sDb->where("surveyid=$this->id");
   	  	$this->sDb->query();
-  	  	$res=$this->sDb->getResultArray();
+  	  	$res=$this->sDb->getResultArray(1);
   	  	foreach ($res as $_arr){
   	  	  $tmpProblem=new problem();
   	  	  $tmpProblem->setIdByHand((int)$_arr["id"]);
@@ -189,7 +189,8 @@
   	}
   	public function selectIdByTitleSubject(){
   	  if($this->owner==0){
-  	    
+  	    $this->owner=$this->surveyUser->getId();
+  	    echo $this->owner."the owner id before";
   	  }
   	  $this->sDb->select("survey","id");
   	  $this->sDb->where("title=\"$this->title\" AND owner=$this->owner AND subject=\"$this->subject\" AND begin=\"$this->begin\"");

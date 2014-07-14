@@ -32,7 +32,7 @@
   	    $this->pDb->select("poption");
   	    $this->pDb->where("problemid=$this->id");
   	    $this->pDb->query();
-  	    $res=$this->pDb->getResultArray();
+  	    $res=$this->pDb->getResultArray(1);
   	    foreach ($res as $_arr){
   	      $tmpOpt=new option();
   	      $tmpOpt->setProblemid((int)$_arr["problemid"]);
@@ -51,7 +51,7 @@
   	}
   	public function setId(){
   	  $this->pDb->select("problem","id");
-  	  $this->pDb->where("description=\"$this->descri\" AND surveyid=$this->surveyid");		
+  	  $this->pDb->where("description=\"$this->descri\" AND surveyid=$this->surveyid AND num=$this->order");		
   	  $this->pDb->query();
   	  $tmp=$this->pDb->getResultArray();
   	  $this->id=$tmp["id"];

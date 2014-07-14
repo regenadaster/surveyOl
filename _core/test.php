@@ -62,9 +62,9 @@
     //$myhtml->echoHtml();
     //var_dump($myhtml);
      //$dataSet=$_POST["dataSet"];
-     setVal("userName","lgt");
-     setVal("password","5363513l");
-     $_interpreter=new interpreter($dataSet,1);
+     //setVal("userName","lgt");
+     //setVal("password","5363513l");
+     //$_interpreter=new interpreter($dataSet,1);
      $_interpreter->echoUrl();
    // $myhtml=new createHtml($dataSet,1);
     //echo "hello";
