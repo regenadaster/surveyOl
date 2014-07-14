@@ -78,6 +78,23 @@
     $str=date('Y-m',time());
     return $str."-1";
   }
+  function getTheMinCountInArr($arr){
+  	if(empty($arr)) return 0;
+  	$tmpArr=array();
+  	$tmpMin=maxInt;
+  	for($i=0;$i<count($arr);$i++){
+  	  if(isset($tmpArr[(string)$arr[$i]])) $tmpArr[(string)$arr[$i]]++;
+  	  else{
+  	  	$tmpArr[(string)$arr[$i]]=1;
+  	  }
+  	}
+  	foreach($tmpArr as $key=>$val){
+  	  if($val<$tmpMin){
+  	    $tmpMin=$val;
+  	  }
+  	}
+  	return $tmpMin;
+  }
   function getThisWeekFirstDay(){
   	$date=new DateTime();
   	$date->modify('this week');

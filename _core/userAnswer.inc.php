@@ -22,16 +22,21 @@
   	  $this->uaDb=db::getInstance(MYSQLHOST,MYSQLUSER,MYSQLPS);
   	}
   	public function getSubveyAnswerNum(){
+      $numArr=array();
   	  if($this->surveyid==0){
   	    return false;
   	  }
   	  else{
   	    $tmpStr="surveyid=$this->surveyid";
-  	    $this->uaDb->select($this->userAnswerTb,"count(id) as num");
+  	    $this->uaDb->select($this->userAnswerTb,"problemid as num");
   	    $this->uaDb->where($tmpStr);
   	    $this->uaDb->query();
-  	    $res=$this->uaDb->getResultArray();
-  	    return $res["num"];
+  	    $res=$this->uaDb->getResultArray(1);
+  	    $minval=maxInt;
+  	    foreach ($res as $arr){
+          $numArr[]=$arr['num'];
+  	    }
+  	    return getTheMinCountInArr($numArr);
   	  }
   	}
   	public function createAnswer(){
