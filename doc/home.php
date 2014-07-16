@@ -7,11 +7,18 @@
 <script src="../jquery/jquery.js"></script>
 <script src="../lib/home.js"></script>
 <title>Insert title here</title>
-
+<link rel="stylesheet" type="text/css" href="../css/common.css"/>
+<style type="text/css">
+  #sBottom{
+    height:150px;
+    background-color:#eaeaea;
+  }
+</style>
 </head>
 <body>
 	<div class="container">
-		<div class="navbar-collapse collapse" style="background-color:#f8f8f8;border-color:#e7e7e7; margin-bottom:20px;">
+	   <div class="row">
+		<div class="navbar-collapse collapse" style="background-color:#f8f8f8;border-color:#e7e7e7;">
 			<ul class="nav navbar-nav">
 				<a class="navbar-brand" href="#">System</a>
 				<li class="active">
@@ -35,6 +42,8 @@
 				</li>
 			</ul>
 		</div>
+		</div>
+		<div class="row">
 			<div class="jumbotron">
 			    </br>
 			    <div class="row">
@@ -54,10 +63,13 @@
 				  </div>
 				 </div>
 			</div>
-		<div class="row">
-			
-		</div>
+			</div>
+	  <div class="row">
+        <div class="col-md-12" id="sBottom">
+          <div class="row" style="height:50px;"></div>
+          <span id="cr">@2014 by lgt regenadaster@gmail.com</span>
+        </div>
+      </div>
 	</div>
-
 </body>
 </html>

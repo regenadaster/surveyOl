@@ -1,5 +1,12 @@
-<?php session_start();?>
+<?php
+  session_start();
+  require_once '../_core/_main.inc.php'; 
+  if(IsAnonymous()){
+    header("Location: http://127.0.0.1:8081/surveyOI/doc/login.php");
+  }
+?>
 <html>
+  <head>
   <meta http-equiv="Content-Type" content="text/html; charset=gb2312">
   <title>createSurvey</title>
   <link rel="stylesheet" href="../Bootstrap/dist/css/bootstrap.min.css" type="text/css">  
@@ -10,9 +17,6 @@
   <script type="text/javascript" src="../lib/newCreateSurvey.js"></script>
   <script type="text/javascript" src="../lib/surveyDataProcess.js"></script>
   <style type="text/css">
-    body{
-      background-color:#eee;
-    }
     #createRow{
     }
     #editButton{
@@ -20,9 +24,6 @@
     }
     .rightSide{
       margin-right:0;
-    }
-    #title{
-      margin-left:50;
     }
     .block{
       padding-top:10;
@@ -52,8 +53,9 @@
     }
     #titleRow{
     }
-    #title{
+    #sytitle{
       text-align:center;
+      margin-right:-5px;
     }
     .preDiv{
       height:20px;
@@ -79,7 +81,23 @@
     .glyphicon{
       display:none;
     }
-  </style><body>
+    #addBorder{
+      background-color:#efefef;
+      margin-left:300px;
+      border-bottom:solid 1px;
+      border-right:solid 1px;
+      border-left:solid 1px;
+      border-color:#e7e7e7;
+    }
+   #sBottom{
+     height:150px;
+     background-color:#eaeaea;
+     margin-top:150px;
+   }
+  </style>
+  <link rel="stylesheet" type="text/css" href="../css/common.css"/>
+  </head>
+  <body>
     <div class="container">
             <div class="row">
     		<div class="navbar-collapse collapse" style="background-color:#f8f8f8;border-color:#e7e7e7; margin-bottom:20px;">
@@ -109,12 +127,12 @@
 			</ul>
 		</div>
 	  <div class="row">
-      <div class="row col-md-8 col-md-offset-2">
-        <ul class="nav nav-tabs ">
-          <li><a href="http://127.0.0.1:8081/surveyOI/doc/newCreateSurvey.php" data-toggle="tab">创建新的问卷</a></li>
-          <li><a href="#profile" data-toggle="tab">复制现有的问卷</a></li>
-          <li><a href="#messages" data-toggle="tab">引用官方模板</a></li>
-          <li><a href="#settings" data-toggle="tab">引用共享问题</a></li>
+      <div class="navbar-collapse collapse col-md-8 col-md-offset-3" >
+        <ul class="nav nav-tabs">
+          <li class="active"><a href="http://127.0.0.1:8081/surveyOI/doc/newCreateSurvey.php">创建新的问卷</a></li>
+          <li><a href="#profile">复制现有的问卷</a></li>
+          <li><a href="#messages">引用官方模板</a></li>
+          <li><a href="#settings">引用共享问题</a></li>
         </ul>
       </div>
       </div>
@@ -133,25 +151,24 @@
           <button type="button" class="btn btn-default" id="saveSurvey">保存</button>
         </div>
       </div>
-      <div class="row hideStyle" style="height:120px"></div>
-      <div class="row col-md-10 col-md-offset-1" id="addBorder">
-      <div class="row col-md-8 col-md-offset-2" id="titleRow">
-        <div class="col-md-3">
-         <span><h5 id="title">新问卷标题</h5></span>
+      <div class="row col-md-5 col-md-offset-3" id="addBorder">
+      <div class="row hideStyle" style="height:100px"></div>
+      <div class="row" id="titleRow">
+        <div class="col-md-4 col-md-offset-2">
+         <span id="sytitle">新问卷标题</span>
          </div>
-        <div class="col-md-3">
+        <div class="col-md-5">
           <input type="text" class="form-control" id="titleVal"/>
         </div>
       </div>
       </br>
-      </br>
-       </br>
       <div class="row" style="height:20px"></div>
       <div class="row col-md-8 col-md-offset-2" id="createRow">
         <div class="col-md-offset-2">
           <button type="button" class="btn btn-primary" id="createBtn">创建问卷</button>
         </div>
       </div>
+      <div class="row hideStyle" style="height:80px"></div>
       </div>
       </div>
       <div class="row">
@@ -159,6 +176,12 @@
         <div class="row" id="blocksContent">
         </div>
       </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12" id="sBottom">
+          <div class="row" style="height:50px;"></div>
+          <span id="cr">@2014 by lgt regenadaster@gmail.com</span>
+        </div>
       </div>
     </div>
   </body>

@@ -95,6 +95,9 @@
   	}
   	return $tmpMin;
   }
+  function IsAnonymous(){
+  	return getVal("userName")=="";
+  }
   function getThisWeekFirstDay(){
   	$date=new DateTime();
   	$date->modify('this week');

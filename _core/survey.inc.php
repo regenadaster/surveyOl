@@ -190,7 +190,7 @@
   	public function selectIdByTitleSubject(){
   	  if($this->owner==0){
   	    $this->owner=$this->surveyUser->getId();
-  	    echo $this->owner."the owner id before";
+  	    //echo $this->owner."the owner id before";
   	  }
   	  $this->sDb->select("survey","id");
   	  $this->sDb->where("title=\"$this->title\" AND owner=$this->owner AND subject=\"$this->subject\" AND begin=\"$this->begin\"");
@@ -294,14 +294,10 @@
 	  	$this->isCreate=true;
 	  	$i=0;
 	  	$this->setSid();
-	  	//$this->MkFile();
-	  	//echo "before heerer";
 	  	foreach($this->problems as $problem){
 	  	  $i++;
-	  	  //echo "just befor sid";
 	  	  $problem->setSid($this->getSid());
 	  	  $problem->setOrder($i);
-	  	  //echo "heerer";
 	  	  $problem->createProblem();
 	  	}
   	  }
