@@ -13,7 +13,9 @@
   <script type="text/javascript" src="../Jquery/jquery.js"></script>
   <script type="text/javascript" src="../pickerSrc/jquery.fs.picker.js"></script>
   <link rel="stylesheet" type="text/css" href="../pickerSrc/jquery.fs.picker.css">
+  <script type="text/javascript" src="../jquery-ui/jquery-ui.min.js"></script>
   <script type="text/javascript" src="../lib/common.js"></script>
+  <script type="text/javascript" src="../lib/action.js"></script>
   <script type="text/javascript" src="../lib/newCreateSurvey.js"></script>
   <script type="text/javascript" src="../lib/surveyDataProcess.js"></script>
   <style type="text/css">
