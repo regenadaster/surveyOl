@@ -75,6 +75,13 @@
     .limit{
       max-width:400px;
     }
+    .limit:hover{
+      background-color:#FDF9CD;
+      cursor:move;
+    }
+    .editHand{
+      cursor:text;
+    }
     .oneLimit{
     }
     #table1{
