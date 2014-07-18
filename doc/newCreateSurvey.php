@@ -79,6 +79,9 @@
       background-color:#FDF9CD;
       cursor:move;
     }
+    label:hover{
+      background-color:#FDF9CD;	
+    }
     .editHand{
       cursor:text;
     }
