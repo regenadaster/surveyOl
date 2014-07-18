@@ -11,11 +11,12 @@
   <title>createSurvey</title>
   <link rel="stylesheet" href="../Bootstrap/dist/css/bootstrap.min.css" type="text/css">  
   <script type="text/javascript" src="../Jquery/jquery.js"></script>
-  <script type="text/javascript" src="../pickerSrc/jquery.fs.picker.js"></script>
-  <link rel="stylesheet" type="text/css" href="../pickerSrc/jquery.fs.picker.css">
   <script type="text/javascript" src="../jquery-ui/jquery-ui.min.js"></script>
   <script type="text/javascript" src="../lib/common.js"></script>
   <script type="text/javascript" src="../lib/action.js"></script>
+  <script type="text/javascript" src="../pickerSrc/jquery.fs.picker.js"></script>
+  <link rel="stylesheet" type="text/css" href="../pickerSrc/jquery.fs.picker.css">
+  <script type="text/javascript" src="../lib/createHtml.js"></script>
   <script type="text/javascript" src="../lib/newCreateSurvey.js"></script>
   <script type="text/javascript" src="../lib/surveyDataProcess.js"></script>
   <style type="text/css">
@@ -42,6 +43,9 @@
     .option{
     	
     }
+    .unsort:hover{
+      cursor:hand;
+    }
     .addTAG{
       display:none;      
     }
@@ -54,6 +58,10 @@
       border-radius:5px;
     }
     #titleRow{
+    }
+    #sortable-placeholder{
+      height:100px;
+      width:1000px;
     }
     #sytitle{
       text-align:center;
