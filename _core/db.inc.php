@@ -23,11 +23,11 @@
   	  mysql_select_db("surveyoi",$this->link);
   	  mysql_query("set names utf-8");
   	}
-  	public function getInstance($host,$user,$passwd){
-  	  if(!self::$instance instanceof db){
-  	  	$this->instance=new db($host,$user,$passwd);
+  	public static function getInstance($host,$user,$passwd){
+  	  if(!self::$instance instanceof self){
+  	  	self::$instance = new self($host,$user,$passwd);
   	  }
-  	  return $this->instance;
+  	  return self::$instance;
   	}
   	public function getResultNumber(){
   	  return $this->mysql_num_rows();
